@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ default_locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site_title }}</title>
+  {% if meta_description %}<meta name="description" content="{{ meta_description }}">{% endif %}
+  {% if canonical %}<link rel="canonical" href="{{ canonical }}">{% endif %}
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ og.title }}">
+  {% if og.description %}<meta property="og:description" content="{{ og.description }}">{% endif %}
+  {% if og.url %}<meta property="og:url" content="{{ og.url }}">{% endif %}
+  <meta name="twitter:card" content="summary">
+  <style>{{ css | safe }}</style>
+</head>
+<body class="home">
+  <header class="home-head">
+    <div class="home-bar">
+      <div class="home-titles">
+        <h1 id="site-title">{{ site_title }}</h1>
+        <p id="site-subtitle" class="subtitle">{{ site_subtitle }}</p>
+      </div>
+      <select id="lang-select" class="lang-select" aria-label="language"></select>
+    </div>
+    <input id="search" class="search" type="search" autocomplete="off">
+  </header>
+
+  <main id="shelf" class="shelf">
+    {% for b in books %}
+    <div class="book-card">
+      <a class="card-link" href="{{ b.href }}" aria-label="{{ b.title }}"></a>
+      <span class="cover{% if not b.cover %} placeholder{% endif %}"{% if b.cover %} style="background-image:url('{{ b.cover }}')"{% endif %}>{% if not b.cover %}<span class="cover-initial">{{ b.title[:1] }}</span>{% endif %}</span>
+      <span class="card-body">
+        <span class="bt">{{ b.title }}</span>
+        {% if b.author or b.contact %}
+        <span class="ba-row">
+          {% if b.author %}<span class="ba">{{ b.author }}</span>{% endif %}
+          {% if b.contact %}<a class="contact" href="mailto:{{ b.contact }}">Contact</a>{% endif %}
+        </span>
+        {% endif %}
+        {% if b.description %}<span class="bd">{{ b.description }}</span>{% endif %}
+        {% if b.copyright %}<span class="bc">{{ b.copyright }}</span>{% endif %}
+      </span>
+    </div>
+    {% endfor %}
+  </main>
+  <section id="results" class="results"></section>
+
+  <script>window.__SITE__ = {{ site_json | safe }};</script>
+  <script>{{ js | safe }}</script>
+</body>
+</html>

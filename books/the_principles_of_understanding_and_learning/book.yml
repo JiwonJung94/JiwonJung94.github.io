@@ -1,0 +1,28 @@
+default_locale: en
+locales:
+  - ko
+  - en
+  - vi
+
+title:
+  ko: 이해와 학습의 원리
+  en: The Principles of Understanding and Learning
+  vi: Nguyên lý của hiểu và học
+
+cover: assets/cover.png
+
+description:
+  ko: >-
+    사람의 이해와 학습을 하나의 인지 모델로 설명하는 교양서.
+  en: >-
+    A cognitive-science book that explains how people understand and learn through a single model.
+  vi: >-
+    Một cuốn sách khoa học nhận thức giải thích cách con người hiểu và học thông qua một mô hình duy nhất.
+
+author: Jiwon Jung
+
+license: All Rights Reserved
+
+year: 2026
+
+email: jiwon8297@gmail.com

@@ -1,0 +1,33 @@
+# Opening · Scattered Tips and a Single Model
+
+You read a chapter. The sentences are smooth, and you glide to the end without a snag. Closing the book, you feel you understood it. Then a week later, when someone asks about its content, there is nothing in your hands. You clearly read it and clearly followed it, yet nothing remains. The person beside you, who labored through the same chapter, is the one who can actually put its content to use. The one who read smoothly came up empty; the one who stumbled retained it.
+
+Ask us to explain this mismatch, and the answer we usually have is a list of tips. Test yourself often. Don't cram; space it out. Don't drill a single problem type; mix them. Don't just underline; cover the page and recall. Each sounds plausible, some seem to contradict one another, and not one of them tells you why it works or when it fails. A tip works sometimes and not at others, but the list alone gives no way to know where that boundary lies. So we memorize the tips, pick the one that suits us by gut, and usually get it wrong.
+
+Instead of adding one more list of tips, this book builds a single model from which those tips flow. The aim is to make the answers to such questions—why testing works, when it does not, whether spacing your study and mixing your problems spring from the same root or different ones—follow from one structure. Once you hold the model, a tip is no longer an item to memorize but a result you read off from how the model operates.
+
+## The Same Surface, Differing Only in Depth
+
+The mismatch—reading smoothly yet retaining nothing—is not a matter of mood but a measured phenomenon. An experiment by McNamara and colleagues in 1996 addressed it head-on. Students read the same science text in two versions. One version spelled out every connection between sentences, a smooth text; the other deliberately left gaps in those connections for the reader to fill. Afterward, comprehension was measured in two ways: one a recall test of the content as written, the other a test that could be solved only by applying and reasoning from what had been learned to a new situation.
+
+Among readers who had background knowledge, those who studied the gapped text and those who studied the smooth text scored the same on the recall test. Where the two diverged was the test that required applying and reasoning to a new situation, and there the readers of the gapped text did better. The gaps forced readers to infer the connections themselves, leaving a deeper understanding. But this advantage was confined to readers who had the background knowledge to fill the gaps. For readers without it, there was nothing to fill the gaps with, and the smooth, gapless text was better instead.
+
+The same students, the same text—yet someone who checked only the recall test concludes that there is no difference between the two, while someone who checked with the reasoning test concludes that one side learned far more deeply. The experience of reading smoothly and retaining nothing sits precisely in this gap. We look at the surface and write down "understood," but what remains as learning lies on the side of depth that the surface cannot show.
+
+## Our Own Gauge Points to a Falsehood
+
+Then what is that sense, while reading, of "this is enough"? What it measures is not depth. A meta-analysis of perceptual disfluency shows as much. When text is presented in a deliberately hard-to-read, blurry font, the amount remembered later barely changes; the effect on recall was effectively zero. Yet the learner's own judgment of "how much have I learned" dropped markedly. When it is hard to read, you feel you learned less, though you did not actually learn less; when it reads smoothly, you feel you learned more, though you did not learn as much more as the feeling suggests. That "feeling of ease" we take as a measure of learning gauges only how smoothly the text was processed, not what the text left in your head.
+
+So even when a smoothly read text is empty, we fail to notice—because the gauge that should notice misreads smoothness as learning. The one who read haltingly retains more yet feels they did poorly, while the one who read fluently comes up empty yet feels they did well. We have no window that looks directly at our own learning state; all we have is one rough ruler called ease, and that ruler systematically points to a falsehood.
+
+This is why a list of tips is precarious. We judge which tip works by feel, and that feeling cannot be trusted. Rereading makes things smooth, so we feel we know it and stop there; covering the page and recalling stumbles, so we feel it is inefficient and avoid it—even though it is the stumbling side that remains. Follow the feeling, and you systematically avoid the very methods that teach best. We need something to lean on other than the feeling, and a model is what goes in its place.
+
+## The Model This Book Builds
+
+Picture the head as two stores. One is a narrow, fast working memory where whatever is being processed lingers briefly; the other is a broad store where what has settled in piles up over time. The two are opposite in character. Along the path that information travels between them sit three processes: what working memory builds is written into the store, what is written is consolidated over time, and what has set is read out again. Two stores and three processes—this is the whole of the model the book will carry to the end.
+
+From this structure the phenomena of learning follow. A blank-paper test retains better than rereading because of the effect that the act of reading out has on the store; spacing your study beats cramming because the forgetting that creeps in between makes the next reading-out harder; the same text being easy for one person and impossible for another follows from the limits of the narrow working memory. Even the phenomenon that what is learned does not transfer well to new situations follows from what the store uses as a cue to find a memory. Tips that had to be memorized one by one become different faces of one model.
+
+So this book proceeds in the order of building the model first and drawing the phenomena from it. The earlier chapters go to establishing how each of the two stores is built and exactly what the three processes do; where testing, spacing, and mixing come from within that structure comes afterward. Structure comes before tricks you can use right away.
+
+While reading, you need remember only one thing. The feeling of reading smoothly is not evidence that this book's content has stayed in your head. It is merely the prime signal that this book tells you, from the start, to distrust. Conversely, if at some passage you snag and have to go back, that snag may not be a loss.

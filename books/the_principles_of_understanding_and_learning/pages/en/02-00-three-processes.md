@@ -1,0 +1,27 @@
+# Chapter 2 · Writing, Settling, Reading
+
+That a childhood phone number survives after years means that this number too once had a spell, like a just-heard number, of floating briefly in working memory. Back then it too would have scattered at a moment's distraction. Yet now it is lodged in long-term memory and endures. How did something that floated briefly in a narrow, volatile working memory become a permanent entry in a broad, long-lasting long-term memory? Along that path sit three processes: writing, settling, and reading.
+
+## Writing · From Working Memory to Long-Term Memory
+
+The start of the path into long-term memory is recording what working memory has built as a new entry in long-term memory. This is called **encoding**. The moment what has been processed in working memory wins a place in long-term memory is encoding, and the starting point of what we call learning is here.
+
+The first thing to note about encoding is that what gets written is not a copy of the input. Two people hear the same name; one ties it to someone they know with the same name, the other lets the sound pass by. Days later, the first recalls the name and the second cannot. The sound that entered their ears was identical, yet what was written into long-term memory differed. How much of something gets written is determined by how much, in working memory, that input was tied to things already known. Process it deeply in working memory and tie it to much, and it is written richly into long-term memory; brush only the surface, and it is written thinly or not at all. Encoding is not a copy that transcribes the input as is, but the engraving of working memory's computational result into long-term memory.
+
+## Settling · Stabilizing What Was Just Written
+
+What comes after writing is making the freshly written entry firm over time. This is called **consolidation**. The entry encoding has just engraved is still soft. It is soft because it is as yet only loosely tied to existing knowledge. With only a few strands holding it, if something similar comes along next and tries to take the same spot, it is easily pushed out. The experience of what you crammed in the night before a test standing collapsed in places by the next morning is this softness. Consolidation, over time, ties this entry more densely into existing knowledge so that it is held by many strands. With more strands attached, even when something similar comes in, it can hardly seize the spot and overwrite it.
+
+Consolidation has one feature unlike the other two processes: it is not a computation we intend and run, but proceeds on its own, taking advantage of the gaps when working memory is idle. Writing and reading are both done by raising a representation into working memory and occupying that place, but settling happens in the intervals when that place is not filled with new work. So it occurs without our being aware of it, and does not speed up just because we resolve to make it. When working memory is empty and no new input is coming in—that is, while we sleep—is the best time for settling. While we are awake and active, new input comes in endlessly, filling working memory and pushing out what was just written; but during sleep there is no such interference, and it can be firmed up quietly. This is why many studies indicate that a large part of settling happens during sleep, and why what you learned the day before becomes, if anything, clearer after a good night's sleep.
+
+## Reading · From Long-Term Memory Back to Working Memory
+
+The last is summoning an entry held in long-term memory back into working memory. This is called **retrieval**. A known person's name coming to your lips, a memorized line of poetry surfacing—these are all retrieval. Reading what is written in long-term memory and raising it into working memory is retrieval, and this is the moment we feel "I remember."
+
+Retrieval has one face that differs from its appearance. Reading looks like a passive matter of merely pulling something out and looking at it, but the very act of forcefully drawing something out of long-term memory changes long-term memory. What you have recalled once comes more easily the next time. Pulling something out to read is at the same time an act of writing it again. The reason a blank-paper test retains better than rereading comes from this one fact—but to lay it out properly we must first build the structure of long-term memory.
+
+## What Learning Is
+
+Lay the three processes out, and we can pin down in one line what learning is. **Learning is computation in working memory changing the state of long-term memory.** A just-heard phone number becoming, like a childhood number, one that lasts is because the result of processing that number in working memory, having passed through encoding and consolidation, has remained as a permanent change in long-term memory. To have learned something means not that some good feeling has arisen somewhere in the head, but that the state of long-term memory has actually changed.
+
+Every method of learning to be taken up from here is, in the end, a variation on this one line. Yet this definition still has a blank. We said computation in working memory changes the "state" of long-term memory—but what exactly is that state? What is stored in long-term memory, in what shape, and what does it mean for the state to change—what within it differs? To say what writing and reading change, and how, we must first know the shape of long-term memory, the thing being changed.

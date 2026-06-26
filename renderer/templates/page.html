@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }} — {{ book_title }}</title>
+  {% if meta_description %}<meta name="description" content="{{ meta_description }}">{% endif %}
+  {% if robots_noindex %}<meta name="robots" content="noindex,follow">{% endif %}
+  {% if canonical %}<link rel="canonical" href="{{ canonical }}">{% endif %}
+  {% for a in hreflang %}<link rel="alternate" hreflang="{{ a.lang }}" href="{{ a.href }}">
+  {% endfor %}{% if hreflang_xdefault %}<link rel="alternate" hreflang="x-default" href="{{ hreflang_xdefault }}">{% endif %}
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ og.title }}">
+  {% if og.description %}<meta property="og:description" content="{{ og.description }}">{% endif %}
+  {% if og.url %}<meta property="og:url" content="{{ og.url }}">{% endif %}
+  <meta property="og:site_name" content="{{ og.site_name }}">
+  <meta property="og:locale" content="{{ og.locale }}">
+  {% if og.image %}<meta property="og:image" content="{{ og.image }}">
+  <meta name="twitter:card" content="summary_large_image">{% else %}<meta name="twitter:card" content="summary">{% endif %}
+  <style>{{ css | safe }}</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="book-head">
+      <div class="head-row">
+        <a class="site-home" href="{{ site_home }}">← {{ site_name }}</a>
+        <button id="nav-collapse" class="nav-collapse" aria-label="목차 접기/펼치기"></button>
+      </div>
+      <a class="book-title" href="../index.html">{{ book_title }}</a>
+      <select class="lang-select" data-kind="page" aria-label="언어 선택">
+        {% for l in locale_options %}
+        <option value="{{ l.href }}" data-code="{{ l.code }}" data-real="{{ '1' if l.real else '0' }}"{% if l.active %} selected{% endif %}>{{ l.label }}{% if not l.real %} ·{% endif %}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <nav class="toc">
+      <ol>
+        {% for c in nav %}
+        <li class="{% if c.active %}active{% endif %}">
+          <a href="{{ c.href }}">{{ c.label }}</a>
+          {% if c.children %}
+          <ol>
+            {% for ch in c.children %}
+            <li class="{% if ch.active %}active{% endif %}"><a href="{{ ch.href }}">{{ ch.label }}</a></li>
+            {% endfor %}
+          </ol>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </aside>
+
+  <main class="content">
+    {% if is_fallback %}
+    <p class="fallback-note">이 페이지는 아직 <b>{{ lang }}</b>로 번역되지 않아 <b>{{ default_locale }}</b> 원문을 보여 줍니다.</p>
+    {% endif %}
+    <article class="prose">
+      {{ content_html | safe }}
+    </article>
+    <nav class="pager">
+      {% if prev %}<a class="prev" href="{{ prev.href }}">← {{ prev.label }}</a>{% else %}<span></span>{% endif %}
+      {% if next %}<a class="next" href="{{ next.href }}">{{ next.label }} →</a>{% endif %}
+    </nav>
+    <footer class="page-foot">{{ copyright }}{% if contact_email %} · <a href="mailto:{{ contact_email }}">Contact</a>{% endif %}</footer>
+  </main>
+</div>
+<script>{{ js | safe }}</script>
+</body>
+</html>

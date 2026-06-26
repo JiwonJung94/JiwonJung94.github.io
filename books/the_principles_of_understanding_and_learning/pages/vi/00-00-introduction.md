@@ -1,0 +1,33 @@
+# Lời mở đầu · Những mẹo rời rạc và một mô hình duy nhất
+
+Bạn đọc một chương sách. Câu văn trôi chảy, bạn lướt đến cuối mà không vấp chỗ nào. Gấp sách lại, bạn cảm thấy mình đã hiểu. Rồi một tuần sau, khi có ai hỏi về nội dung đó, trong tay bạn chẳng còn gì. Rõ ràng bạn đã đọc và rõ ràng đã hiểu, vậy mà không còn lại gì. Người ngồi bên cạnh, người đã chật vật đọc cùng chương ấy, lại là người có thể đem nội dung ra dùng. Bên đọc trôi chảy thì trống rỗng, bên đọc lắp bắp thì còn lại.
+
+Nếu được yêu cầu giải thích sự lệch lạc này, câu trả lời ta thường có là một danh sách các mẹo. Hãy tự kiểm tra thường xuyên. Đừng dồn một lúc, hãy chia nhỏ ra. Đừng chỉ luyện một dạng, hãy trộn các dạng lên. Đừng chỉ gạch chân, hãy che lại rồi nhớ lại. Mỗi mẹo nghe đều có lý, vài mẹo nghe như mâu thuẫn nhau, và không mẹo nào cho biết vì sao nó hiệu nghiệm hay khi nào nó vô dụng. Một mẹo lúc có tác dụng lúc không, nhưng chỉ với danh sách thì không có cách nào biết ranh giới ấy nằm ở đâu. Thế là ta học thuộc các mẹo, chọn cái hợp với mình bằng cảm tính, và thường chọn sai.
+
+Thay vì thêm một danh sách mẹo nữa, cuốn sách này dựng lên một mô hình duy nhất mà từ đó các mẹo kia tuôn ra. Mục tiêu là làm cho lời đáp cho những câu hỏi như thế—vì sao kiểm tra lại hiệu nghiệm, khi nào nó không, việc chia nhỏ thời gian học và việc trộn các dạng bài nảy ra từ cùng một gốc hay từ những gốc khác nhau—đều theo ra từ một cấu trúc. Một khi đã nắm được mô hình, một mẹo không còn là một mục để học thuộc mà là một kết quả bạn đọc ra từ cách mô hình vận hành.
+
+## Cùng một bề mặt, chỉ khác ở chiều sâu
+
+Sự lệch lạc—đọc trôi chảy mà chẳng còn lại gì—không phải là chuyện tâm trạng mà là một hiện tượng đo được. Một thí nghiệm của McNamara và cộng sự năm 1996 đã xử lý nó một cách trực diện. Các sinh viên đọc cùng một văn bản khoa học ở hai phiên bản. Một phiên bản nêu rõ mọi liên kết giữa câu với câu, một văn bản trôi chảy; phiên bản kia cố ý để lại những lỗ hổng trong các liên kết đó cho người đọc tự lấp. Sau khi đọc, sự hiểu được đo theo hai cách: một là bài kiểm tra nhớ lại nội dung đúng như đã viết, hai là bài kiểm tra chỉ giải được khi áp dụng và suy luận từ điều đã học sang một tình huống mới.
+
+Ở những người đọc có kiến thức nền, bên học bằng văn bản có lỗ hổng và bên học bằng văn bản trôi chảy đạt điểm như nhau ở bài kiểm tra nhớ lại. Chỗ hai bên tách ra là bài kiểm tra đòi áp dụng và suy luận sang tình huống mới, và ở đó bên học bằng văn bản có lỗ hổng làm tốt hơn. Các lỗ hổng buộc người đọc tự suy ra các liên kết, để lại một sự hiểu sâu hơn. Nhưng lợi thế này chỉ giới hạn ở những người đọc có kiến thức nền để lấp các lỗ hổng. Với người đọc không có nó, chẳng có gì để lấp các lỗ hổng, và ngược lại, văn bản trôi chảy không có lỗ hổng lại tốt hơn.
+
+Cùng những sinh viên ấy, cùng văn bản ấy—vậy mà người chỉ xét bài kiểm tra nhớ lại kết luận rằng hai văn bản không có khác biệt, còn người xét bằng bài kiểm tra suy luận lại kết luận rằng một bên đã học sâu hơn hẳn. Trải nghiệm đọc trôi chảy mà chẳng còn lại gì nằm đúng ngay trong khe hở này. Ta nhìn bề mặt và ghi "đã hiểu," nhưng cái còn lại như là học nằm ở phía chiều sâu mà bề mặt không cho thấy.
+
+## Chiếc đồng hồ đo của chính ta chỉ sai
+
+Vậy thì cái cảm giác "thế là đủ rồi" trong lúc đọc đang đo điều gì? Cái nó đo không phải là chiều sâu. Một phân tích tổng hợp về sự thiếu trôi chảy tri giác cho thấy điều này. Khi văn bản được trình bày bằng một phông chữ mờ cố ý làm khó đọc, lượng nhớ được về sau hầu như không đổi; tác động lên việc nhớ lại thực chất bằng không. Vậy mà phán đoán của người học về "mình đã học được bao nhiêu" lại giảm rõ rệt. Khó đọc thì cảm thấy học được ít hơn, nhưng thực ra không học ít hơn; đọc trôi chảy thì cảm thấy học được nhiều hơn, nhưng cũng không học được nhiều thêm đúng như cảm giác ấy. Cái "cảm giác dễ dàng" mà ta lấy làm thước đo việc học chỉ đo văn bản được xử lý trơn tru đến đâu, chứ không đo văn bản ấy để lại gì trong đầu.
+
+Vì thế ngay cả khi một văn bản đọc trôi chảy là trống rỗng, ta cũng không nhận ra—bởi chiếc đồng hồ đo lẽ ra phải nhận ra lại đọc sự trơn tru thành sự học. Người đọc lắp bắp giữ lại nhiều hơn mà vẫn cảm thấy mình "làm dở," còn người đọc trôi chảy thì trống rỗng mà vẫn cảm thấy mình "làm tốt." Ta không có cửa sổ nào nhìn thẳng vào trạng thái học của chính mình; thứ duy nhất ta có là một cây thước ước chừng gọi là sự dễ dàng, và cây thước ấy chỉ sai một cách có hệ thống.
+
+Đây là lý do một danh sách mẹo là bấp bênh. Ta phán xét mẹo nào hiệu nghiệm bằng cảm giác, mà cảm giác ấy thì không đáng tin. Đọc lại thì trơn tru nên ta cảm thấy "đã biết" và dừng ở đó; che lại rồi nhớ lại thì lắp bắp nên ta cảm thấy "kém hiệu quả" và né tránh—dù chính bên lắp bắp mới là bên còn lại. Đi theo cảm giác, bạn sẽ né tránh một cách có hệ thống đúng những phương pháp dạy tốt nhất. Cần một thứ để dựa vào thay cho cảm giác, và mô hình là thứ thế vào chỗ đó.
+
+## Mô hình mà cuốn sách này dựng nên
+
+Hãy hình dung cái đầu như hai kho chứa. Một là một trí nhớ làm việc hẹp và nhanh, nơi thứ đang được xử lý lưu lại trong chốc lát; kho kia là một kho rộng, nơi thứ đã an vị chất lại lâu dài. Hai bên trái ngược nhau về tính chất. Trên con đường thông tin đi lại giữa hai bên có ba quá trình: thứ trí nhớ làm việc dựng nên được viết vào kho, thứ được viết được củng cố qua thời gian, và thứ đã định hình được đọc ra lần nữa. Hai kho chứa và ba quá trình—đó là toàn bộ mô hình mà cuốn sách sẽ mang theo đến cuối.
+
+Từ cấu trúc này, các hiện tượng của việc học theo ra. Một bài kiểm tra trên giấy trắng giữ lại tốt hơn việc đọc lại là nhờ tác động của việc đọc-ra lên kho; chia nhỏ việc học tốt hơn dồn một lúc là vì sự quên xen vào giữa làm lần lấy-ra kế tiếp khó hơn; cùng một văn bản mà với người này thì dễ với người kia thì không thể hiểu là theo ra từ giới hạn của trí nhớ làm việc hẹp. Ngay cả hiện tượng điều đã học không chuyển giao tốt sang tình huống mới cũng theo ra từ việc kho dùng gì làm đầu mối để tìm một ký ức. Những mẹo từng phải học thuộc từng cái một trở thành những khuôn mặt khác nhau của một mô hình.
+
+Vì thế cuốn sách này đi theo thứ tự dựng mô hình trước rồi rút các hiện tượng ra từ đó. Các chương đầu dùng để dựng nên mỗi kho trong hai kho được tạo ra thế nào và ba quá trình làm chính xác những gì; còn kiểm tra, giãn cách và trộn dạng bài nảy ra từ đâu trong cấu trúc ấy thì đến sau. Cấu trúc đi trước những mẹo dùng được ngay.
+
+Trong lúc đọc, bạn chỉ cần nhớ một điều. Cảm giác đọc trôi chảy không phải là bằng chứng rằng nội dung cuốn sách này đã đọng lại trong đầu bạn. Nó chỉ là tín hiệu tiêu biểu mà ngay từ đầu cuốn sách này bảo bạn hãy nghi ngờ. Ngược lại, nếu ở đoạn nào đó bạn vấp và phải đọc lại, cái vấp ấy có thể không phải là một mất mát.

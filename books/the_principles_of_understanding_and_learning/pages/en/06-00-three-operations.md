@@ -1,0 +1,25 @@
+# Chapter 6 · The Three Operations in Working Memory
+
+We said the place where the head's computation takes place is working memory. What exactly happens on top of it? When you do 17 times 24 in your head, working memory is not a shelf that merely holds something still. It brings up numbers, multiplies, holds onto intermediate results, and adds again. What working memory does on top of representations comes down to three things: it brings up representations, binds representations, and holds onto a representation.
+
+## Bringing Up
+
+The first operation is drawing a representation from long-term memory and raising it into working memory—that is, retrieval. We met retrieval earlier as the process of reading long-term memory, but from working memory's standpoint it is also the operation by which working memory procures materials. To multiply 17 by 4, you must first bring up times-table representations like "4 times 7 is 28" and "4 times 1 is 4" from long-term memory into working memory. In reading, too, by the time a character introduced earlier is referred to again several sentences later, that character's representation has already been pushed out of working memory—because the narrow working memory has meanwhile been filled with other content. So you must haul that character back up from long-term memory to connect it with the new sentence. Because working memory's work almost always needs materials procured from long-term memory, bringing up is the ground of the other operations.
+
+## Binding
+
+Next is binding several representations risen together in working memory into one unit, making a new composite representation. This is called formation. Put in the language of the network seen in Chapter 3, it is weaving a few floating representations in one relation to build a new composite representation. This binding is the most important operation working memory performs—because when a new composite representation remains in long-term memory, that is learning itself.
+
+The relation that binds representations comes by two routes. One route is repetition. Process the same arrangement over and over, and what always appeared together gradually hardens into one lump. Separate letters seen together countless times bind into one word and become one unit; the same procedure trodden over and over binds its steps into one lump of skill. Expertise accumulates by this route, in which what statistically co-occurs often becomes one unit. The other route is inference. Drawing a relation such as cause or analogy from background knowledge, it weaves apart-lying representations in one stroke. Reading and connecting two events as cause—"so that is why this happened"—or settling a new concept by likening it to something known, is this route. What we call understanding happens here. On what conditions the two routes operate we dig into separately.
+
+## Holding
+
+The one remaining is actively holding a representation in working memory—that is, maintenance. Since what is in working memory runs out within seconds the moment you let go, you must keep holding it so as not to lose the material for the next operation. Holding the 68 you got from 17 times 4 by repeating it under your breath so as not to spill it while you multiply 17 by 20 is maintenance.
+
+Maintenance has one important property worth noting in connection with learning: merely holding a representation in working memory for a long time, or merely re-viewing the same thing over and over, grows storage strength almost not at all. In the previous chapter we said storage strength rises greatly in a hard retrieval after retrieval strength has fallen. But maintenance, or mere re-exposure, only keeps a representation afloat in working memory in a high-retrieval-strength state; it does not do the work of hauling up with effort what has fallen. So while you hold it, performance in the moment is fine, but the change that lasts in long-term memory hardly happens. This is the first piece of why opening a textbook and rereading the same page over and over goes smoothly while you read but turns up empty in the exam room. Rereading merely props up retrieval strength for a moment and does not grow storage strength.
+
+## How the Three Operations Lead to Learning
+
+Lay the three operations out, and you see where among them learning comes from. The new composite representation that binding builds, passing through encoding and consolidation to remain as a new structure in long-term memory—that is learning. Bringing up supplies the material to bind, and holding keeps that material from running out until it is bound. The three roll together to build one new composite representation, and it remains in long-term memory. Computation happens in working memory, and the resulting change of state happens in long-term memory.
+
+But this working memory in which the three operations run is, we have said again and again, narrow and volatile. What exactly does narrowness block, and why does the fact that little can be held at once make such a large difference? Having set up the three operations, we now look at the first wall they run into: the narrowness of working memory.
