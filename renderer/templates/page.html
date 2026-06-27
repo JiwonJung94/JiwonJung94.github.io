@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>(function(){try{var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <title>{{ page_title }} — {{ book_title }}</title>
   {% if meta_description %}<meta name="description" content="{{ meta_description }}">{% endif %}
   {% if robots_noindex %}<meta name="robots" content="noindex,follow">{% endif %}
@@ -25,7 +26,10 @@
     <div class="book-head">
       <div class="head-row">
         <a class="site-home" href="{{ site_home }}">← {{ site_name }}</a>
-        <button id="nav-collapse" class="nav-collapse" aria-label="목차 접기/펼치기"></button>
+        <span class="hr-btns">
+          <button id="theme-toggle" class="theme-toggle" aria-label="테마 전환"></button>
+          <button id="nav-collapse" class="nav-collapse" aria-label="목차 접기/펼치기"></button>
+        </span>
       </div>
       <a class="book-title" href="../index.html">{{ book_title }}</a>
       <select class="lang-select" data-kind="page" aria-label="언어 선택">

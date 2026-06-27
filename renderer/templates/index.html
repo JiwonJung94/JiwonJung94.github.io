@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>(function(){try{var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <title>{{ site_title }}</title>
   {% if meta_description %}<meta name="description" content="{{ meta_description }}">{% endif %}
   {% if canonical %}<link rel="canonical" href="{{ canonical }}">{% endif %}
@@ -20,7 +21,10 @@
         <h1 id="site-title">{{ site_title }}</h1>
         <p id="site-subtitle" class="subtitle">{{ site_subtitle }}</p>
       </div>
-      <select id="lang-select" class="lang-select" aria-label="language"></select>
+      <div class="home-controls">
+        <button id="theme-toggle" class="theme-toggle" aria-label="theme"></button>
+        <select id="lang-select" class="lang-select" aria-label="language"></select>
+      </div>
     </div>
     <input id="search" class="search" type="search" autocomplete="off">
   </header>

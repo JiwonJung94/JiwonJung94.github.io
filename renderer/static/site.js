@@ -11,6 +11,15 @@
     return s + " views";
   }
 
+  var themeBtn = document.getElementById("theme-toggle");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("theme", next); } catch (e) {}
+    });
+  }
+
   var pageSel = document.querySelector('select.lang-select[data-kind="page"]');
   if (pageSel) {
 
