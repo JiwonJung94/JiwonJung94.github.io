@@ -180,7 +180,20 @@ def render_book(book_dir: str | Path, out_dir: str | Path, book_id: str | None=N
             for lc in book.locales:
                 real = (lc, page.chapter, page.section, page.slug) in book.pages
                 locale_options.append({'code': lc, 'label': LANG_NAMES.get(lc, lc.upper()), 'href': f'../{lc}/{page.out_name}', 'active': lc == locale, 'real': real})
-            html = page_tmpl.render(book_title=book.title(locale), page_title=page.title, lang=locale, is_fallback=page.is_fallback, default_locale=book.default_locale, content_html=content_html, nav=[{**c, 'active': c['key'] == (page.chapter, page.section, page.slug), 'children': [{**ch, 'active': ch['key'] == (page.chapter, page.section, page.slug)} for ch in c['children']]} for c in nav], locale_options=locale_options, prev={'href': prev_p.out_name, 'label': prev_p.title} if prev_p else None, next={'href': next_p.out_name, 'label': next_p.title} if next_p else None, site_home='../../index.html', site_name=site_name, copyright=copyright_text, contact_email=contact_email, meta_description=meta_description, robots_noindex=robots_noindex, canonical=canonical, hreflang=hreflang, hreflang_xdefault=hreflang_xdefault, og=og, views_url=views_url, views_json=views_json, css=css, js=js)
+            jsonld = None
+            if site_url:
+                _author = book.author(locale)
+                _btitle = book.title(locale)
+                _year = book.meta.get('year') or datetime.date.today().year
+                _book = {'@type': 'Book', 'name': _btitle, 'inLanguage': locale}
+                _article = {'@type': 'Article', 'headline': page.title, 'inLanguage': locale, 'url': canonical, 'datePublished': str(_year), 'isPartOf': _book}
+                if _author:
+                    _person = {'@type': 'Person', 'name': _author}
+                    _article['author'] = _person
+                    _book['author'] = _person
+                _crumbs = [{'@type': 'ListItem', 'position': 1, 'name': site_name, 'item': f'{site_url}/'}, {'@type': 'ListItem', 'position': 2, 'name': _btitle, 'item': f'{site_url}/{book.book_id}/'}, {'@type': 'ListItem', 'position': 3, 'name': page.title}]
+                jsonld = json.dumps({'@context': 'https://schema.org', '@graph': [_article, {'@type': 'BreadcrumbList', 'itemListElement': _crumbs}]}, ensure_ascii=False).replace('<', '\\u003c')
+            html = page_tmpl.render(book_title=book.title(locale), page_title=page.title, lang=locale, is_fallback=page.is_fallback, default_locale=book.default_locale, content_html=content_html, nav=[{**c, 'active': c['key'] == (page.chapter, page.section, page.slug), 'children': [{**ch, 'active': ch['key'] == (page.chapter, page.section, page.slug)} for ch in c['children']]} for c in nav], locale_options=locale_options, prev={'href': prev_p.out_name, 'label': prev_p.title} if prev_p else None, next={'href': next_p.out_name, 'label': next_p.title} if next_p else None, site_home='../../index.html', site_name=site_name, copyright=copyright_text, contact_email=contact_email, meta_description=meta_description, robots_noindex=robots_noindex, canonical=canonical, hreflang=hreflang, hreflang_xdefault=hreflang_xdefault, og=og, views_url=views_url, views_json=views_json, jsonld=jsonld, css=css, js=js)
             (loc_out / page.out_name).write_text(html, encoding='utf-8')
             if locale == book.default_locale and first_page_name is None:
                 first_page_name = page.out_name

@@ -24,6 +24,7 @@
   <meta property="og:locale" content="{{ og.locale }}">
   {% if og.image %}<meta property="og:image" content="{{ og.image }}">
   <meta name="twitter:card" content="summary_large_image">{% else %}<meta name="twitter:card" content="summary">{% endif %}
+  {% if jsonld %}<script type="application/ld+json">{{ jsonld | safe }}</script>{% endif %}
   <style>{{ css | safe }}</style>
 </head>
 <body>
