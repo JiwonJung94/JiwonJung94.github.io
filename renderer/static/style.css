@@ -144,7 +144,7 @@ mark { background: #f6e7b8; color: inherit; padding: 0 1px; border-radius: 2px; 
 }
 
 .book-card .cover {
-  flex: 0 0 92px; width: 92px; aspect-ratio: 2 / 3; align-self: flex-start; border-radius: 8px;
+  flex: 0 0 128px; width: 128px; align-self: stretch; border-radius: 8px;
   background-size: cover; background-position: center; background-color: #ece6da;
   box-shadow: 0 2px 8px rgba(0,0,0,.14);
 }
@@ -192,4 +192,9 @@ mark { background: #f6e7b8; color: inherit; padding: 0 1px; border-radius: 2px; 
   
   .nav-collapse::before { content: "▾"; }
   body.nav-collapsed .nav-collapse::before { content: "▸"; }
+}
+
+/* 폰: 표지를 작게(책비율) 되돌려 글 폭 확보 */
+@media (max-width: 480px) {
+  .book-card .cover { flex: 0 0 92px; width: 92px; aspect-ratio: 2 / 3; align-self: flex-start; }
 }
