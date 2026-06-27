@@ -76,12 +76,16 @@
 
   if (window.__VIEWS__ && window.__VIEWS__.url) {
     var V = window.__VIEWS__;
-    var q = V.url + "?book=" + encodeURIComponent(V.book) +
-      "&slug=" + encodeURIComponent(V.slug) + "&lang=" + encodeURIComponent(V.lang) +
-      "&locales=" + encodeURIComponent((V.locales || []).join(",")) + "&hit=1";
+    var q = V.url + "?book=" + encodeURIComponent(V.book) + "&hit=1";
+    if (V.slug) {
+      q += "&slug=" + encodeURIComponent(V.slug) + "&lang=" + encodeURIComponent(V.lang) +
+        "&locales=" + encodeURIComponent((V.locales || []).join(","));
+    }
     fetch(q).then(function (r) { return r.json(); }).then(function (d) {
       var el = document.getElementById("views");
-      if (el && typeof d.page === "number") el.textContent = viewsLabel(V.lang, d.page);
+      if (!el) return;
+      if (V.slug && typeof d.page === "number") el.textContent = viewsLabel(V.lang, d.page);
+      else if (typeof d.book === "number") el.textContent = viewsLabel(V.lang, d.book);
     }).catch(function () {});
   }
 

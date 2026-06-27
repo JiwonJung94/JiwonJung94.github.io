@@ -24,6 +24,10 @@ export default {
       const tKey = "t:" + book;
       const t = parseInt((await env.VIEWS.get(tKey)) || "0", 10) + 1;
       await env.VIEWS.put(tKey, String(t));
+    } else if (hit && !slug) {
+      const tKey = "t:" + book;
+      const t = parseInt((await env.VIEWS.get(tKey)) || "0", 10) + 1;
+      await env.VIEWS.put(tKey, String(t));
     }
 
     const out = { book: parseInt((await env.VIEWS.get("t:" + book)) || "0", 10) };

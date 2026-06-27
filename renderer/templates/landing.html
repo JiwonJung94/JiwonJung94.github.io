@@ -63,10 +63,12 @@
   </main>
 
   <footer class="landing-foot">
+    {% if views_url %}<div id="views" class="pageviews"></div>{% endif %}
     <div class="foot-actions"><button class="share-btn" type="button" aria-label="share"></button></div>
     <div>{{ copyright }}{% if contact_email %} · <a href="mailto:{{ contact_email }}">Contact</a>{% endif %}</div>
   </footer>
 
+  {% if views_json %}<script>window.__VIEWS__ = {{ views_json | safe }};</script>{% endif %}
   <script>{{ js | safe }}</script>
   {% if analytics_cf %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ analytics_cf }}"}'></script>{% endif %}
 </body>
