@@ -1,5 +1,6 @@
 from __future__ import annotations
 import datetime
+import json
 import re
 import shutil
 from dataclasses import dataclass, field
@@ -119,7 +120,7 @@ def _build_nav(resolved: list[Page]) -> list[dict]:
         nav.append({'label': intro.title, 'href': intro.out_name, 'key': (intro.chapter, intro.section, intro.slug), 'children': children})
     return nav
 
-def render_book(book_dir: str | Path, out_dir: str | Path, book_id: str | None=None, css: str | None=None, site_title=None, site_url: str | None=None, site_default_locale: str | None=None) -> Book:
+def render_book(book_dir: str | Path, out_dir: str | Path, book_id: str | None=None, css: str | None=None, site_title=None, site_url: str | None=None, site_default_locale: str | None=None, views_url: str | None=None) -> Book:
     site_url = site_url.rstrip('/') if site_url else None
     book = load_book(book_dir, book_id)
     out_dir = Path(out_dir)
@@ -174,11 +175,12 @@ def render_book(book_dir: str | Path, out_dir: str | Path, book_id: str | None=N
             cover_name = book.cover(locale)
             og_image = f'{site_url}/{book.book_id}/{cover_name}' if site_url and cover_name and (book_out / cover_name).is_file() else None
             og = {'title': page.title, 'description': meta_description, 'url': canonical, 'site_name': book.title(locale), 'locale': locale, 'image': og_image}
+            views_json = json.dumps({'url': views_url, 'book': book.book_id, 'slug': page.out_name[:-5], 'lang': locale, 'locales': book.locales}, ensure_ascii=False) if views_url else None
             locale_options = []
             for lc in book.locales:
                 real = (lc, page.chapter, page.section, page.slug) in book.pages
                 locale_options.append({'code': lc, 'label': LANG_NAMES.get(lc, lc.upper()), 'href': f'../{lc}/{page.out_name}', 'active': lc == locale, 'real': real})
-            html = page_tmpl.render(book_title=book.title(locale), page_title=page.title, lang=locale, is_fallback=page.is_fallback, default_locale=book.default_locale, content_html=content_html, nav=[{**c, 'active': c['key'] == (page.chapter, page.section, page.slug), 'children': [{**ch, 'active': ch['key'] == (page.chapter, page.section, page.slug)} for ch in c['children']]} for c in nav], locale_options=locale_options, prev={'href': prev_p.out_name, 'label': prev_p.title} if prev_p else None, next={'href': next_p.out_name, 'label': next_p.title} if next_p else None, site_home='../../index.html', site_name=site_name, copyright=copyright_text, contact_email=contact_email, meta_description=meta_description, robots_noindex=robots_noindex, canonical=canonical, hreflang=hreflang, hreflang_xdefault=hreflang_xdefault, og=og, css=css, js=js)
+            html = page_tmpl.render(book_title=book.title(locale), page_title=page.title, lang=locale, is_fallback=page.is_fallback, default_locale=book.default_locale, content_html=content_html, nav=[{**c, 'active': c['key'] == (page.chapter, page.section, page.slug), 'children': [{**ch, 'active': ch['key'] == (page.chapter, page.section, page.slug)} for ch in c['children']]} for c in nav], locale_options=locale_options, prev={'href': prev_p.out_name, 'label': prev_p.title} if prev_p else None, next={'href': next_p.out_name, 'label': next_p.title} if next_p else None, site_home='../../index.html', site_name=site_name, copyright=copyright_text, contact_email=contact_email, meta_description=meta_description, robots_noindex=robots_noindex, canonical=canonical, hreflang=hreflang, hreflang_xdefault=hreflang_xdefault, og=og, views_url=views_url, views_json=views_json, css=css, js=js)
             (loc_out / page.out_name).write_text(html, encoding='utf-8')
             if locale == book.default_locale and first_page_name is None:
                 first_page_name = page.out_name

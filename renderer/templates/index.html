@@ -39,7 +39,10 @@
         </span>
         {% endif %}
         {% if b.description %}<span class="bd">{{ b.description }}</span>{% endif %}
-        {% if b.copyright %}<span class="bc">{{ b.copyright }}</span>{% endif %}
+        <span class="card-foot">
+          {% if b.copyright %}<span class="bc">{{ b.copyright }}</span>{% endif %}
+          {% if views_url %}<span class="views" data-book="{{ b.id }}"></span>{% endif %}
+        </span>
       </span>
     </div>
     {% endfor %}

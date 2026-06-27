@@ -123,7 +123,7 @@ mark { background: #f6e7b8; color: inherit; padding: 0 1px; border-radius: 2px; 
 .shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
 .book-card {
   position: relative;
-  display: flex; gap: 18px; align-items: stretch; height: 212px; overflow: hidden;
+  display: flex; gap: 18px; align-items: stretch; height: 232px; overflow: hidden;
   text-decoration: none; color: inherit; background: #fff;
   border: 1px solid var(--line); border-radius: 14px; padding: 20px;
   box-shadow: 0 1px 2px rgba(0,0,0,.03);
@@ -166,10 +166,13 @@ mark { background: #f6e7b8; color: inherit; padding: 0 1px; border-radius: 2px; 
   display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
   padding-bottom: 3px;
 }
+.card-foot { margin-top: auto; padding-top: 10px; }
 .bc {
-  margin-top: auto; padding-top: 10px; font-size: 11.5px; color: var(--muted);
+  display: block; font-size: 11.5px; color: var(--muted);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
+.card-foot .views { display: block; font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+.pageviews { font-size: 12.5px; color: var(--muted); margin-bottom: 4px; }
 
 @media (max-width: 760px) {
   .layout { flex-direction: column; }

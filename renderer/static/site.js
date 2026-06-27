@@ -4,6 +4,12 @@
   function getLang(def) { try { return localStorage.getItem(LS_KEY) || def; } catch (e) { return def; } }
   function setLang(l) { try { localStorage.setItem(LS_KEY, l); } catch (e) {} }
   function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; }
+  function viewsLabel(lang, n) {
+    var s = (n || 0).toLocaleString();
+    if (lang === "ko") return "조회 " + s;
+    if (lang === "vi") return s + " lượt xem";
+    return s + " views";
+  }
 
   var pageSel = document.querySelector('select.lang-select[data-kind="page"]');
   if (pageSel) {
@@ -14,6 +20,17 @@
       setLang(opt.getAttribute("data-code"));
       window.location.href = opt.value;
     });
+  }
+
+  if (window.__VIEWS__ && window.__VIEWS__.url) {
+    var V = window.__VIEWS__;
+    var q = V.url + "?book=" + encodeURIComponent(V.book) +
+      "&slug=" + encodeURIComponent(V.slug) + "&lang=" + encodeURIComponent(V.lang) +
+      "&locales=" + encodeURIComponent((V.locales || []).join(",")) + "&hit=1";
+    fetch(q).then(function (r) { return r.json(); }).then(function (d) {
+      var el = document.getElementById("views");
+      if (el && typeof d.page === "number") el.textContent = viewsLabel(V.lang, d.page);
+    }).catch(function () {});
   }
 
   var navCollapse = document.getElementById("nav-collapse");
@@ -100,12 +117,28 @@
         '<a class="card-link" href="' + bookLink(b) + '" aria-label="' + title + '"></a>' + cov +
         '<span class="card-body"><span class="bt">' + title + "</span>" + baRow +
         (desc ? '<span class="bd">' + esc(desc) + "</span>" : "") +
-        (cr ? '<span class="bc">' + esc(cr) + "</span>" : "") +
+        '<span class="card-foot">' +
+          (cr ? '<span class="bc">' + esc(cr) + "</span>" : "") +
+          (site.viewsUrl ? '<span class="views" data-book="' + esc(b.id) + '"></span>' : "") +
+        "</span>" +
         "</span></div>";
+    }
+
+    function fillViews() {
+      if (!site.viewsUrl) return;
+      var els = shelf.querySelectorAll(".views[data-book]");
+      Array.prototype.forEach.call(els, function (el) {
+        var id = el.getAttribute("data-book");
+        fetch(site.viewsUrl + "?book=" + encodeURIComponent(id))
+          .then(function (r) { return r.json(); })
+          .then(function (d) { if (typeof d.book === "number") el.textContent = viewsLabel(lang, d.book); })
+          .catch(function () {});
+      });
     }
 
     function renderShelf(books) {
       shelf.innerHTML = books.map(card).join("") || '<p class="noresult">' + ui().empty + "</p>";
+      fillViews();
     }
 
     function loadIndex(cb) {

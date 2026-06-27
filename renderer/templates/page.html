@@ -63,9 +63,13 @@
       {% if prev %}<a class="prev" href="{{ prev.href }}">← {{ prev.label }}</a>{% else %}<span></span>{% endif %}
       {% if next %}<a class="next" href="{{ next.href }}">{{ next.label }} →</a>{% endif %}
     </nav>
-    <footer class="page-foot">{{ copyright }}{% if contact_email %} · <a href="mailto:{{ contact_email }}">Contact</a>{% endif %}</footer>
+    <footer class="page-foot">
+      {% if views_url %}<div id="views" class="pageviews"></div>{% endif %}
+      <div>{{ copyright }}{% if contact_email %} · <a href="mailto:{{ contact_email }}">Contact</a>{% endif %}</div>
+    </footer>
   </main>
 </div>
+{% if views_json %}<script>window.__VIEWS__ = {{ views_json | safe }};</script>{% endif %}
 <script>{{ js | safe }}</script>
 </body>
 </html>
