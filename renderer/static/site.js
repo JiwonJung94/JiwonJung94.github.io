@@ -20,6 +20,17 @@
     });
   }
 
+  var progress = document.getElementById("read-progress");
+  if (progress) {
+    var updateProgress = function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + "%";
+    };
+    addEventListener("scroll", updateProgress, { passive: true });
+    addEventListener("resize", updateProgress);
+    updateProgress();
+  }
+
   var pageSel = document.querySelector('select.lang-select[data-kind="page"]');
   if (pageSel) {
 
