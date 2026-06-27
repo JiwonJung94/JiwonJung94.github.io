@@ -20,6 +20,23 @@
     });
   }
 
+  var shareBtns = document.querySelectorAll(".share-btn");
+  if (shareBtns.length) {
+    var SH = { ko: { s: "공유", c: "링크 복사됨" }, en: { s: "Share", c: "Link copied" }, vi: { s: "Chia sẻ", c: "Đã sao chép" } };
+    var sl = SH[document.documentElement.getAttribute("lang")] || SH.en;
+    Array.prototype.forEach.call(shareBtns, function (btn) {
+      btn.textContent = sl.s;
+      btn.addEventListener("click", function () {
+        if (navigator.share) { navigator.share({ title: document.title, url: location.href }).catch(function () {}); return; }
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(location.href).then(function () {
+            btn.textContent = sl.c; setTimeout(function () { btn.textContent = sl.s; }, 1500);
+          }).catch(function () {});
+        }
+      });
+    });
+  }
+
   var progress = document.getElementById("read-progress");
   if (progress) {
     var updateProgress = function () {
