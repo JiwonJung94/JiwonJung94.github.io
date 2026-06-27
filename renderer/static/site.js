@@ -117,7 +117,7 @@
 
     function pick(map, def) { return (map && (map[lang] || map[def])) || ""; }
     function bookLocale(b) { return b.locales.indexOf(lang) >= 0 ? lang : b.default; }
-    function bookLink(b) { return b.id + "/" + bookLocale(b) + "/" + b.first; }
+    function bookLink(b) { return b.id + "/" + bookLocale(b) + "/"; }
 
     function snippetHTML(text, q) {
       var i = text.toLowerCase().indexOf(q);

@@ -257,3 +257,38 @@ mark { background: var(--mark); color: inherit; padding: 0 1px; border-radius: 2
 .resume-label { font-size: 12px; font-weight: 600; color: var(--accent); white-space: nowrap; }
 .resume-title { flex: 1; min-width: 0; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .resume-go { color: var(--muted); }
+
+body.landing { max-width: 760px; margin: 0 auto; padding: 0 24px 64px; }
+.landing-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 18px 0; }
+.landing-bar .hr-btns { display: flex; align-items: center; gap: 8px; }
+.landing-bar .lang-select { margin: 0; }
+.landing-main { text-align: center; padding: 24px 0 8px; }
+.landing-cover {
+  display: block; width: 180px; aspect-ratio: 2 / 3; margin: 0 auto 26px;
+  background-size: cover; background-position: center; border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.18);
+}
+.landing-cover.placeholder { display: flex; align-items: center; justify-content: center; background: var(--accent); }
+.landing-title { font-size: 30px; line-height: 1.25; margin: 0 0 8px; }
+.landing-author { color: var(--muted); margin: 0 0 18px; font-size: 15px; }
+.landing-desc { max-width: 56ch; margin: 0 auto 26px; color: var(--fg); line-height: 1.7; text-align: left; }
+.landing-read {
+  display: inline-block; padding: 11px 26px; border-radius: 999px;
+  background: var(--accent); color: #fff; text-decoration: none; font-size: 15px; font-weight: 600;
+}
+.landing-read:hover { opacity: .9; }
+.landing-toc { text-align: left; margin: 44px auto 0; max-width: 56ch; }
+.landing-toc ol { list-style: none; margin: 0; padding: 0; counter-reset: ch; }
+.landing-toc > ol > li { counter-increment: ch; padding: 9px 0; border-top: 1px solid var(--border); }
+.landing-toc > ol > li > a { text-decoration: none; color: var(--fg); font-weight: 600; }
+.landing-toc > ol > li > a::before { content: counter(ch) ". "; color: var(--muted); font-weight: 400; }
+.landing-toc > ol > li:hover > a { color: var(--accent); }
+.landing-toc ol ol { margin: 6px 0 2px 18px; }
+.landing-toc ol ol li { padding: 4px 0; }
+.landing-toc ol ol a { text-decoration: none; color: var(--muted); font-size: 14px; }
+.landing-toc ol ol a:hover { color: var(--accent); }
+.landing-foot {
+  margin: 48px auto 0; max-width: 56ch; text-align: center;
+  font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 12px; align-items: center;
+}
+.landing-foot a { color: var(--muted); }

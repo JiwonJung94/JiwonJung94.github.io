@@ -149,6 +149,10 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
         rows = [f'  <url><loc>{site_url}/</loc></url>']
         for b in index_books:
             bid = b['id']
+            blocs = b['locales']
+            land_alts = ''.join(('<xhtml:link rel="alternate" hreflang="%s" href="%s"/>' % (lc, _xml('%s/%s/%s/' % (site_url, bid, lc))) for lc in blocs))
+            for lc in blocs:
+                rows.append('  <url><loc>%s</loc>%s</url>' % (_xml('%s/%s/%s/' % (site_url, bid, lc)), land_alts))
             for p in b['pages']:
                 (slug, real) = (p['slug'], list(p['title'].keys()))
                 alts = ''.join(('<xhtml:link rel="alternate" hreflang="%s" href="%s"/>' % (lc, _xml('%s/%s/%s/%s.html' % (site_url, bid, lc, slug))) for lc in real))

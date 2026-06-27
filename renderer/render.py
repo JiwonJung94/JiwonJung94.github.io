@@ -14,6 +14,7 @@ PAGE_RE = re.compile('^(\\d{2})-(\\d{2})-(.+)\\.md$')
 H1_RE = re.compile('^#\\s+(.+?)\\s*$', re.MULTILINE)
 MD_EXTENSIONS = ['extra', 'sane_lists', 'toc', 'admonition']
 LANG_NAMES = {'ko': '한국어', 'en': 'English', 'vi': 'Tiếng Việt', 'ja': '日本語', 'zh': '中文', 'fr': 'Français', 'es': 'Español'}
+READ_LABEL = {'ko': '읽기 시작', 'en': 'Start reading', 'vi': 'Bắt đầu đọc'}
 DEFAULT_SITE_NAME = {'ko': '라이브러리', 'en': 'Library', 'vi': 'Thư viện'}
 
 def plaintext(md_text: str) -> str:
@@ -143,6 +144,7 @@ def render_book(book_dir: str | Path, out_dir: str | Path, book_id: str | None=N
     contact_email = book.meta.get('email')
     env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), autoescape=select_autoescape(['html']))
     page_tmpl = env.get_template('page.html')
+    landing_tmpl = env.get_template('landing.html')
     redirect_tmpl = env.get_template('redirect.html')
     assets_src = book.src / 'assets'
     if assets_src.is_dir():
@@ -212,9 +214,35 @@ def render_book(book_dir: str | Path, out_dir: str | Path, book_id: str | None=N
             (loc_out / page.out_name).write_text(html, encoding='utf-8')
             if locale == book.default_locale and first_page_name is None:
                 first_page_name = page.out_name
+        cover_name = book.cover(locale)
+        has_cover = bool(cover_name) and (book_out / cover_name).is_file()
+        land_cover = '../' + cover_name if has_cover else None
+        land_cover_abs = f'{site_url}/{book.book_id}/{cover_name}' if site_url and has_cover else None
+        land_desc = book.description(locale)
+        land_canonical = f'{site_url}/{book.book_id}/{locale}/' if site_url else None
+        (land_hreflang, land_xdefault) = ([], None)
+        if site_url:
+            land_hreflang = [{'lang': lc, 'href': f'{site_url}/{book.book_id}/{lc}/'} for lc in book.locales]
+            rl = site_default_locale if site_default_locale in book.locales else book.default_locale
+            land_xdefault = f'{site_url}/{book.book_id}/{rl}/'
+        land_options = [{'code': lc, 'label': LANG_NAMES.get(lc, lc.upper()), 'href': f'../{lc}/index.html', 'active': lc == locale} for lc in book.locales]
+        land_jsonld = None
+        if site_url:
+            _btitle = book.title(locale)
+            _bk = {'@type': 'Book', 'name': _btitle, 'inLanguage': locale, 'url': land_canonical}
+            if author:
+                _bk['author'] = {'@type': 'Person', 'name': author}
+            if land_desc:
+                _bk['description'] = land_desc
+            if land_cover_abs:
+                _bk['image'] = land_cover_abs
+            _crumbs = [{'@type': 'ListItem', 'position': 1, 'name': site_name, 'item': f'{site_url}/'}, {'@type': 'ListItem', 'position': 2, 'name': _btitle}]
+            land_jsonld = json.dumps({'@context': 'https://schema.org', '@graph': [_bk, {'@type': 'BreadcrumbList', 'itemListElement': _crumbs}]}, ensure_ascii=False).replace('<', '\\u003c')
+        landing_html = landing_tmpl.render(lang=locale, book_title=book.title(locale), author=author, description=land_desc, meta_description=land_desc or '', cover=land_cover, cover_abs=land_cover_abs, toc=nav, first_href=resolved[0].out_name if resolved else 'index.html', read_label=READ_LABEL.get(locale, READ_LABEL['en']), locale_options=land_options, site_home='../../index.html', site_name=site_name, copyright=copyright_text, contact_email=contact_email, canonical=land_canonical, hreflang=land_hreflang, hreflang_xdefault=land_xdefault, jsonld=land_jsonld, verification=verification, analytics_cf=analytics_cf, css=css, js=js)
+        (loc_out / 'index.html').write_text(landing_html, encoding='utf-8')
     if first_page_name:
-        target = f'{book.default_locale}/{first_page_name}'
-        (book_out / 'index.html').write_text(redirect_tmpl.render(target=target), encoding='utf-8')
+        rl = site_default_locale if site_default_locale in book.locales else book.default_locale
+        (book_out / 'index.html').write_text(redirect_tmpl.render(target=f'{rl}/index.html'), encoding='utf-8')
     return book
 
 def _main():

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>(function(){try{var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1f1f21" media="(prefers-color-scheme: dark)">
+  {% if verification.google %}<meta name="google-site-verification" content="{{ verification.google }}">{% endif %}
+  {% if verification.naver %}<meta name="naver-site-verification" content="{{ verification.naver }}">{% endif %}
+  {% if verification.bing %}<meta name="msvalidate.01" content="{{ verification.bing }}">{% endif %}
+  <title>{{ book_title }}</title>
+  {% if meta_description %}<meta name="description" content="{{ meta_description }}">{% endif %}
+  {% if canonical %}<link rel="canonical" href="{{ canonical }}">{% endif %}
+  {% for a in hreflang %}<link rel="alternate" hreflang="{{ a.lang }}" href="{{ a.href }}">
+  {% endfor %}{% if hreflang_xdefault %}<link rel="alternate" hreflang="x-default" href="{{ hreflang_xdefault }}">{% endif %}
+  <meta property="og:type" content="book">
+  <meta property="og:title" content="{{ book_title }}">
+  {% if description %}<meta property="og:description" content="{{ description }}">{% endif %}
+  {% if canonical %}<meta property="og:url" content="{{ canonical }}">{% endif %}
+  <meta property="og:site_name" content="{{ site_name }}">
+  <meta property="og:locale" content="{{ lang }}">
+  {% if cover_abs %}<meta property="og:image" content="{{ cover_abs }}">
+  <meta name="twitter:card" content="summary_large_image">{% else %}<meta name="twitter:card" content="summary">{% endif %}
+  {% if jsonld %}<script type="application/ld+json">{{ jsonld | safe }}</script>{% endif %}
+  <style>{{ css | safe }}</style>
+</head>
+<body class="landing">
+  <header class="landing-bar">
+    <a class="site-home" href="{{ site_home }}">← {{ site_name }}</a>
+    <span class="hr-btns">
+      <button id="theme-toggle" class="theme-toggle" aria-label="테마 전환"></button>
+      <select class="lang-select" data-kind="page" aria-label="언어 선택">
+        {% for l in locale_options %}
+        <option value="{{ l.href }}" data-code="{{ l.code }}"{% if l.active %} selected{% endif %}>{{ l.label }}</option>
+        {% endfor %}
+      </select>
+    </span>
+  </header>
+
+  <main class="landing-main">
+    {% if cover %}<span class="landing-cover" style="background-image:url('{{ cover }}')"></span>{% else %}<span class="landing-cover placeholder"><span class="cover-initial">{{ book_title[:1] }}</span></span>{% endif %}
+    <h1 class="landing-title">{{ book_title }}</h1>
+    {% if author %}<p class="landing-author">{{ author }}</p>{% endif %}
+    {% if description %}<p class="landing-desc">{{ description }}</p>{% endif %}
+    <a class="landing-read" href="{{ first_href }}">{{ read_label }} →</a>
+
+    <nav class="landing-toc">
+      <ol>
+        {% for c in toc %}
+        <li><a href="{{ c.href }}">{{ c.label }}</a>
+          {% if c.children %}
+          <ol>{% for ch in c.children %}<li><a href="{{ ch.href }}">{{ ch.label }}</a></li>{% endfor %}</ol>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  </main>
+
+  <footer class="landing-foot">
+    <div class="foot-actions"><button class="share-btn" type="button" aria-label="share"></button></div>
+    <div>{{ copyright }}{% if contact_email %} · <a href="mailto:{{ contact_email }}">Contact</a>{% endif %}</div>
+  </footer>
+
+  <script>{{ js | safe }}</script>
+  {% if analytics_cf %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ analytics_cf }}"}'></script>{% endif %}
+</body>
+</html>

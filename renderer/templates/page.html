@@ -42,7 +42,7 @@
           <button id="nav-collapse" class="nav-collapse" aria-label="목차 접기/펼치기"></button>
         </span>
       </div>
-      <a class="book-title" href="../index.html">{{ book_title }}</a>
+      <a class="book-title" href="index.html">{{ book_title }}</a>
       <select class="lang-select" data-kind="page" aria-label="언어 선택">
         {% for l in locale_options %}
         <option value="{{ l.href }}" data-code="{{ l.code }}" data-real="{{ '1' if l.real else '0' }}"{% if l.active %} selected{% endif %}>{{ l.label }}{% if not l.real %} ·{% endif %}</option>
