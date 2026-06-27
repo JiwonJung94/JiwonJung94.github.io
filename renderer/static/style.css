@@ -119,12 +119,12 @@ body.nav-collapsed .toc { display: none; }
 .home-foot { margin-top: 48px; text-align: center; font-size: 13px; color: var(--muted); }
 
 body.home { max-width: 980px; margin: 0 auto; padding: 64px 24px; }
-.home-bar { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.home-bar { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 30px; }
 .home-head h1 { font-size: 34px; margin: 0 0 8px; }
 .home-head .subtitle { color: var(--muted); margin: 0; }
 .home-bar .lang-select { margin-top: 6px; flex: 0 0 auto; }
 .search {
-  width: 100%; margin: 24px 0 40px; padding: 13px 16px; font-size: 16px; font-family: inherit;
+  width: 100%; margin: 0 0 32px; padding: 13px 16px; font-size: 16px; font-family: inherit;
   border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--fg);
 }
 .search:focus { outline: none; border-color: var(--accent); }
@@ -246,3 +246,14 @@ mark { background: var(--mark); color: inherit; padding: 0 1px; border-radius: 2
 }
 .share-btn::before { content: "↗ "; }
 .share-btn:hover { background: var(--hover); }
+.resume { width: 100%; }
+.resume-card {
+  display: flex; align-items: center; gap: 12px; margin: 0 0 20px;
+  padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--card); text-decoration: none; color: inherit;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+.resume-card:hover { border-color: var(--accent); box-shadow: 0 6px 20px rgba(0,0,0,.06); }
+.resume-label { font-size: 12px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+.resume-title { flex: 1; min-width: 0; font-size: 15px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.resume-go { color: var(--muted); }

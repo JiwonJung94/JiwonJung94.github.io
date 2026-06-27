@@ -86,6 +86,7 @@
   </main>
 </div>
 {% if views_json %}<script>window.__VIEWS__ = {{ views_json | safe }};</script>{% endif %}
+<script>window.__RESUME__ = {{ resume_json | safe }};</script>
 <script>{{ js | safe }}</script>
 </body>
 </html>

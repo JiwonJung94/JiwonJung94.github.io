@@ -37,6 +37,10 @@
     });
   }
 
+  if (window.__RESUME__) {
+    try { localStorage.setItem("book-resume", JSON.stringify(window.__RESUME__)); } catch (e) {}
+  }
+
   var progress = document.getElementById("read-progress");
   if (progress) {
     var updateProgress = function () {
@@ -134,6 +138,21 @@
         ss.textContent = sub; ss.style.display = sub ? "" : "none";
       }
       searchInput.placeholder = ui().search;
+      renderResume();
+    }
+
+    var RESUME_LABEL = { ko: "이어서 읽기", en: "Continue reading", vi: "Đọc tiếp" };
+    function renderResume() {
+      var el = document.getElementById("resume");
+      if (!el) return;
+      var r = null;
+      try { r = JSON.parse(localStorage.getItem("book-resume") || "null"); } catch (e) {}
+      if (!r || !r.book || !site.books.some(function (b) { return b.id === r.book; })) { el.innerHTML = ""; return; }
+      var url = r.book + "/" + r.lang + "/" + r.slug + ".html";
+      el.innerHTML = '<a class="resume-card" href="' + url + '">' +
+        '<span class="resume-label">' + (RESUME_LABEL[lang] || RESUME_LABEL.en) + "</span>" +
+        '<span class="resume-title">' + esc(r.bookTitle) + " · " + esc(r.title) + "</span>" +
+        '<span class="resume-go">→</span></a>';
     }
 
     function card(b) {
