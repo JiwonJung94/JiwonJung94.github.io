@@ -50,13 +50,14 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
     site_url = (cfg.get('url') or '').rstrip('/') or None
     cfg_default = cfg.get('default_locale')
     views_url = (cfg.get('views_url') or '').rstrip('/') or None
+    verification = cfg.get('verification') or {}
     cards = []
     site_books = []
     index_books = []
     site_langs = []
     for bdir in book_dirs:
         try:
-            book = render_book(bdir, out, book_id=bdir.name, css=css, site_title=cfg_title, site_url=site_url, site_default_locale=cfg_default, views_url=views_url)
+            book = render_book(bdir, out, book_id=bdir.name, css=css, site_title=cfg_title, site_url=site_url, site_default_locale=cfg_default, views_url=views_url, verification=verification)
         except Exception as e:
             print(f'[건너뜀] {bdir.name}: {e}', file=sys.stderr)
             continue
@@ -130,7 +131,7 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
     site_json = {'books': site_books, 'langs': site_langs, 'langNames': {lc: LANG_NAMES.get(lc, lc.upper()) for lc in site_langs}, 'defaultLang': site_default, 'title': title_map, 'subtitle': subtitle_map, 'viewsUrl': views_url}
     (out / 'search-index.json').write_text(json.dumps({'books': index_books}, ensure_ascii=False), encoding='utf-8')
     env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), autoescape=select_autoescape(['html']))
-    index_html = env.get_template('index.html').render(site_title=title_map.get(site_default, ''), site_subtitle=subtitle_map.get(site_default, ''), footer=footer or f'{len(cards)}권', default_locale=site_default, css=css, js=js, books=cards, views_url=views_url, jsonld=home_jsonld, meta_description=subtitle_map.get(site_default, ''), canonical=f'{site_url}/' if site_url else None, og={'title': title_map.get(site_default, ''), 'description': subtitle_map.get(site_default, ''), 'url': f'{site_url}/' if site_url else None}, site_json=json.dumps(site_json, ensure_ascii=False))
+    index_html = env.get_template('index.html').render(site_title=title_map.get(site_default, ''), site_subtitle=subtitle_map.get(site_default, ''), footer=footer or f'{len(cards)}권', default_locale=site_default, css=css, js=js, books=cards, views_url=views_url, jsonld=home_jsonld, verification=verification, meta_description=subtitle_map.get(site_default, ''), canonical=f'{site_url}/' if site_url else None, og={'title': title_map.get(site_default, ''), 'description': subtitle_map.get(site_default, ''), 'url': f'{site_url}/' if site_url else None}, site_json=json.dumps(site_json, ensure_ascii=False))
     (out / 'index.html').write_text(index_html, encoding='utf-8')
     nf_books = [{'id': b['id'], 'default': b['default'], 'locales': b['locales'], 'slugs': [p['slug'] for p in b['pages']]} for b in index_books]
     nf_html = env.get_template('404.html').render(data=json.dumps({'books': nf_books}, ensure_ascii=False))
