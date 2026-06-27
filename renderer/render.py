@@ -186,7 +186,7 @@ def render_book(book_dir: str | Path, out_dir: str | Path, book_id: str | None=N
                 _btitle = book.title(locale)
                 _year = book.meta.get('year') or datetime.date.today().year
                 _book = {'@type': 'Book', 'name': _btitle, 'inLanguage': locale}
-                _article = {'@type': 'Article', 'headline': page.title, 'inLanguage': locale, 'url': canonical, 'datePublished': str(_year), 'isPartOf': _book}
+                _article = {'@type': 'Article', 'headline': page.title, 'inLanguage': locale, 'url': canonical, 'datePublished': str(_year), 'isPartOf': _book, 'publisher': {'@type': 'Organization', 'name': site_name, 'logo': {'@type': 'ImageObject', 'url': f'{site_url}/icon-512.png'}}}
                 if _author:
                     _person = {'@type': 'Person', 'name': _author}
                     _article['author'] = _person

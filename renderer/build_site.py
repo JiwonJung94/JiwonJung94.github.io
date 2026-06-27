@@ -116,7 +116,17 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
         cards.append({'id': b['id'], 'href': f"{b['id']}/{loc}/{b['first']}", 'title': _res(b['title'], b) or b['id'], 'author': _res(b['author'], b), 'description': _res(b['description'], b), 'cover': f"{b['id']}/{b['cover']}" if b['cover'] else None, 'locales': b['locales'], 'copyright': _res(b['copyright'], b), 'contact': b['contact']})
     home_jsonld = None
     if site_url:
-        home_jsonld = json.dumps({'@context': 'https://schema.org', '@type': 'WebSite', 'name': title_map.get(site_default, 'Library'), 'url': f'{site_url}/', 'inLanguage': site_langs}, ensure_ascii=False).replace('<', '\\u003c')
+        _items = []
+        for (_i, _b) in enumerate(site_books, 1):
+            _name = _b['title'].get(site_default) or _b['title'].get(_b['default']) or _b['id']
+            _bk = {'@type': 'Book', 'name': _name, 'url': f"{site_url}/{_b['id']}/", 'inLanguage': _b['locales']}
+            _au = _b['author'].get(site_default) or _b['author'].get(_b['default'])
+            if _au:
+                _bk['author'] = {'@type': 'Person', 'name': _au}
+            _items.append({'@type': 'ListItem', 'position': _i, 'item': _bk})
+        _org = {'@type': 'Organization', 'name': title_map.get(site_default, 'Library'), 'url': f'{site_url}/', 'logo': {'@type': 'ImageObject', 'url': f'{site_url}/icon-512.png'}}
+        _graph = [_org, {'@type': 'WebSite', 'name': title_map.get(site_default, 'Library'), 'url': f'{site_url}/', 'inLanguage': site_langs, 'publisher': {'@type': 'Organization', 'name': title_map.get(site_default, 'Library')}}, {'@type': 'CollectionPage', 'name': title_map.get(site_default, 'Library'), 'url': f'{site_url}/', 'mainEntity': {'@type': 'ItemList', 'itemListElement': _items}}]
+        home_jsonld = json.dumps({'@context': 'https://schema.org', '@graph': _graph}, ensure_ascii=False).replace('<', '\\u003c')
     site_json = {'books': site_books, 'langs': site_langs, 'langNames': {lc: LANG_NAMES.get(lc, lc.upper()) for lc in site_langs}, 'defaultLang': site_default, 'title': title_map, 'subtitle': subtitle_map, 'viewsUrl': views_url}
     (out / 'search-index.json').write_text(json.dumps({'books': index_books}, ensure_ascii=False), encoding='utf-8')
     env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), autoescape=select_autoescape(['html']))
