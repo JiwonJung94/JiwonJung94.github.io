@@ -13,6 +13,9 @@ subtitle:
   vi: "Sách miễn phí để đọc, cho mọi người, ở mọi nơi."
 views_url: https://book-views.jiwon8297.workers.dev
 
+analytics:
+  cloudflare: "e269f70532544e80bfefcdf6f09c8e73"
+
 verification:
   google: "a-KdWYTExOniU2W2iBfcXF02C2-MA8_64TMXzp7ZjhI"
   naver: "8e8bf4d3cb69bb3bb59feac68f66fd9e880309da"

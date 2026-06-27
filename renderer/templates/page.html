@@ -88,5 +88,6 @@
 {% if views_json %}<script>window.__VIEWS__ = {{ views_json | safe }};</script>{% endif %}
 <script>window.__RESUME__ = {{ resume_json | safe }};</script>
 <script>{{ js | safe }}</script>
+{% if analytics_cf %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ analytics_cf }}"}'></script>{% endif %}
 </body>
 </html>

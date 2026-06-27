@@ -66,5 +66,6 @@
 
   <script>window.__SITE__ = {{ site_json | safe }};</script>
   <script>{{ js | safe }}</script>
+{% if analytics_cf %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ analytics_cf }}"}'></script>{% endif %}
 </body>
 </html>
