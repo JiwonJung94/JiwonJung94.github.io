@@ -1,8 +1,19 @@
 (function () {
   "use strict";
   var LS_KEY = "book-lang";
-  function getLang(def) { try { return localStorage.getItem(LS_KEY) || def; } catch (e) { return def; } }
   function setLang(l) { try { localStorage.setItem(LS_KEY, l); } catch (e) {} }
+  function detectLang(langs, def) {
+    var stored = null;
+    try { stored = localStorage.getItem(LS_KEY); } catch (e) {}
+    if (stored) return langs.indexOf(stored) >= 0 ? stored : def;
+    var cands = [];
+    try { cands = navigator.languages || [navigator.language || ""]; } catch (e) {}
+    for (var i = 0; i < cands.length; i++) {
+      var b = (cands[i] || "").toLowerCase().split("-")[0];
+      if (langs.indexOf(b) >= 0) return b;
+    }
+    return def;
+  }
   function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; }
   function viewsLabel(lang, n) {
     var s = (n || 0).toLocaleString();
@@ -105,8 +116,7 @@
     };
     function ui() { return UI[lang] || UI[site.defaultLang] || UI.en; }
 
-    var lang = getLang(site.defaultLang);
-    if (site.langs.indexOf(lang) < 0) lang = site.defaultLang;
+    var lang = detectLang(site.langs, site.defaultLang);
 
     site.langs.forEach(function (l) {
       var op = document.createElement("option");

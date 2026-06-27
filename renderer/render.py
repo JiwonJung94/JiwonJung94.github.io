@@ -242,7 +242,7 @@ def render_book(book_dir: str | Path, out_dir: str | Path, book_id: str | None=N
         (loc_out / 'index.html').write_text(landing_html, encoding='utf-8')
     if first_page_name:
         rl = site_default_locale if site_default_locale in book.locales else book.default_locale
-        (book_out / 'index.html').write_text(redirect_tmpl.render(target=f'{rl}/index.html'), encoding='utf-8')
+        (book_out / 'index.html').write_text(redirect_tmpl.render(target=f'{rl}/index.html', locales_json=json.dumps(book.locales)), encoding='utf-8')
     return book
 
 def _main():
