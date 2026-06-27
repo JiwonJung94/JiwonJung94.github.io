@@ -2,6 +2,7 @@ from __future__ import annotations
 import argparse
 import datetime
 import json
+import shutil
 import sys
 from pathlib import Path
 import yaml
@@ -139,6 +140,13 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
         sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(rows) + '\n</urlset>\n'
         (out / 'sitemap.xml').write_text(sitemap, encoding='utf-8')
     (out / 'robots.txt').write_text(robots, encoding='utf-8')
+    assets_dir = (Path(config).parent if config else Path('.')) / 'site-assets'
+    if assets_dir.is_dir():
+        for f in assets_dir.iterdir():
+            if f.is_file():
+                shutil.copy2(f, out / f.name)
+    manifest = {'name': title_map.get(site_default, 'Library'), 'short_name': title_map.get(site_default, 'Library'), 'start_url': '/', 'display': 'standalone', 'background_color': '#fbfaf7', 'theme_color': '#8a5a2b', 'icons': [{'src': '/icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': '/icon-512.png', 'sizes': '512x512', 'type': 'image/png'}, {'src': '/icon-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}]}
+    (out / 'site.webmanifest').write_text(json.dumps(manifest, ensure_ascii=False), encoding='utf-8')
     (out / '.nojekyll').write_text('', encoding='utf-8')
     print(f'\n사이트 빌드 완료: {out}/  (책 {len(cards)}권)')
     return 0
