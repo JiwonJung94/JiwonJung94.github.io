@@ -3,6 +3,7 @@ import datetime
 import json
 import re
 import shutil
+import subprocess
 from dataclasses import dataclass, field
 from pathlib import Path
 import markdown
@@ -18,6 +19,14 @@ DEFAULT_SITE_NAME = {'ko': '라이브러리', 'en': 'Library', 'vi': 'Thư việ
 def plaintext(md_text: str) -> str:
     html = markdown.markdown(md_text, extensions=MD_EXTENSIONS)
     return re.sub('\\s+', ' ', re.sub('<[^>]+>', ' ', html)).strip()
+
+def git_date(path):
+    p = Path(path)
+    try:
+        r = subprocess.run(['git', '-C', str(p.parent), 'log', '-1', '--format=%cs', '--', p.name], capture_output=True, text=True, timeout=5)
+        return r.stdout.strip() or None
+    except Exception:
+        return None
 
 def summary(text: str, limit: int=160) -> str:
     text = text.strip()
@@ -187,6 +196,11 @@ def render_book(book_dir: str | Path, out_dir: str | Path, book_id: str | None=N
                 _year = book.meta.get('year') or datetime.date.today().year
                 _book = {'@type': 'Book', 'name': _btitle, 'inLanguage': locale}
                 _article = {'@type': 'Article', 'headline': page.title, 'inLanguage': locale, 'url': canonical, 'datePublished': str(_year), 'isPartOf': _book, 'publisher': {'@type': 'Organization', 'name': site_name, 'logo': {'@type': 'ImageObject', 'url': f'{site_url}/icon-512.png'}}}
+                _dmod = None if page.is_fallback else git_date(book.src / 'pages' / locale / (page.out_name[:-5] + '.md'))
+                if _dmod:
+                    _article['dateModified'] = _dmod
+                if og_image:
+                    _article['image'] = og_image
                 if _author:
                     _person = {'@type': 'Person', 'name': _author}
                     _article['author'] = _person

@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
-from render import LANG_NAMES, TEMPLATES_DIR, _ordered_slugs, plaintext, render_book
+from render import LANG_NAMES, TEMPLATES_DIR, _ordered_slugs, git_date, plaintext, render_book
 STATIC_CSS = Path(__file__).parent / 'static' / 'style.css'
 STATIC_JS = Path(__file__).parent / 'static' / 'site.js'
 
@@ -96,13 +96,16 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
         site_books.append({'id': bid, 'default': dl, 'locales': book.locales, 'first': first_name, 'cover': cover_rel, 'title': title_map, 'description': desc_map, 'author': author_map, 'copyright': copyright_map, 'contact': b_email})
         idx_pages = []
         for (cc, ss, slug) in slug_keys:
-            (t_map, x_map) = ({}, {})
+            (t_map, x_map, d_map) = ({}, {}, {})
             for lc in book.locales:
                 pg = book.pages.get((lc, cc, ss, slug))
                 if pg:
                     t_map[lc] = pg.title
                     x_map[lc] = plaintext(pg.body_md)
-            idx_pages.append({'slug': f'{cc:02d}-{ss:02d}-{slug}', 'title': t_map, 'text': x_map})
+                    _d = git_date(book.src / 'pages' / lc / f'{cc:02d}-{ss:02d}-{slug}.md')
+                    if _d:
+                        d_map[lc] = _d
+            idx_pages.append({'slug': f'{cc:02d}-{ss:02d}-{slug}', 'title': t_map, 'text': x_map, 'dates': d_map})
         index_books.append({'id': bid, 'default': dl, 'locales': book.locales, 'title': title_map, 'description': desc_map, 'pages': idx_pages})
         print(f"  ✓ {bid}  ({', '.join(book.locales)})")
     cfg_default = cfg.get('default_locale')
@@ -150,7 +153,9 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
                 alts = ''.join(('<xhtml:link rel="alternate" hreflang="%s" href="%s"/>' % (lc, _xml('%s/%s/%s/%s.html' % (site_url, bid, lc, slug))) for lc in real))
                 for lc in real:
                     loc = _xml('%s/%s/%s/%s.html' % (site_url, bid, lc, slug))
-                    rows.append('  <url><loc>%s</loc>%s</url>' % (loc, alts))
+                    lm = p.get('dates', {}).get(lc)
+                    lmtag = '<lastmod>%s</lastmod>' % lm if lm else ''
+                    rows.append('  <url><loc>%s</loc>%s%s</url>' % (loc, lmtag, alts))
         sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' + '\n'.join(rows) + '\n</urlset>\n'
         (out / 'sitemap.xml').write_text(sitemap, encoding='utf-8')
     (out / 'robots.txt').write_text(robots, encoding='utf-8')
