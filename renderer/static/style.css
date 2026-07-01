@@ -29,6 +29,7 @@
   --mark: #35425e;
 }
 * { box-sizing: border-box; }
+* { transition: background-color .3s ease, color .3s ease, border-color .3s ease; }
 html, body { margin: 0; padding: 0; }
 body {
   font-family: var(--serif);
@@ -42,7 +43,7 @@ a { color: inherit; }
   width: 300px; flex: 0 0 300px; background: var(--sidebar);
   border-right: 1px solid var(--line); padding: 24px 20px;
   position: sticky; top: 0; height: 100vh; overflow-y: auto;
-  transition: flex-basis .2s ease, width .2s ease, padding .2s ease;
+  transition: flex-basis .2s ease, width .2s ease, padding .2s ease, background-color .3s ease, border-color .3s ease;
 }
 .book-head { margin-bottom: 18px; }
 .head-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
@@ -148,7 +149,7 @@ mark { background: var(--mark); color: inherit; padding: 0 1px; border-radius: 2
   text-decoration: none; color: inherit; background: var(--card);
   border: 1px solid var(--line); border-radius: 14px; padding: 20px;
   box-shadow: 0 1px 2px rgba(0,0,0,.03);
-  transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+  transition: box-shadow .2s ease, transform .2s ease, border-color .3s ease, background-color .3s ease, color .3s ease;
 }
 
 .card-link { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
@@ -231,7 +232,14 @@ mark { background: var(--mark); color: inherit; padding: 0 1px; border-radius: 2
 :root[data-theme="dark"] .theme-toggle::before { content: "\2600"; }  
 .hr-btns { display: flex; gap: 6px; }
 .home-controls { display: flex; align-items: center; gap: 8px; }
-.home-controls .lang-select { margin-top: 0; }
+.home-controls .lang-select { margin-top: 0; height: 30px; padding-top: 0; padding-bottom: 0; }
+.home-about {
+  display: inline-flex; align-items: center; height: 30px; padding: 0 12px;
+  font-size: 13.5px; line-height: 1; color: var(--muted); text-decoration: none; white-space: nowrap;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--card);
+  transition: color .3s ease, border-color .3s ease, background-color .3s ease;
+}
+.home-about:hover { color: var(--fg); border-color: var(--accent); }
 
 :root[data-theme="dark"] .toc li.active > a { background: var(--accent-soft); color: var(--accent); }
 
@@ -255,7 +263,7 @@ mark { background: var(--mark); color: inherit; padding: 0 1px; border-radius: 2
   display: flex; align-items: center; gap: 12px; margin: 0 0 20px;
   padding: 14px 18px; border: 1px solid var(--line); border-radius: 12px;
   background: var(--card); text-decoration: none; color: inherit;
-  transition: box-shadow .2s ease, border-color .2s ease;
+  transition: box-shadow .2s ease, border-color .3s ease, background-color .3s ease, color .3s ease;
 }
 .resume-card:hover { border-color: var(--accent); box-shadow: 0 6px 20px rgba(0,0,0,.06); }
 .resume-label { font-size: 12px; font-weight: 600; color: var(--accent); white-space: nowrap; }
