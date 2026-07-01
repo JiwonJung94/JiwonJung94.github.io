@@ -30,6 +30,9 @@
       try { localStorage.setItem("theme", next); } catch (e) {}
     });
   }
+  window.addEventListener("pageshow", function () {
+    try { document.documentElement.setAttribute("data-theme", localStorage.getItem("theme") || "dark"); } catch (e) {}
+  });
 
   var shareBtns = document.querySelectorAll(".share-btn");
   if (shareBtns.length) {
@@ -131,7 +134,7 @@
 
     function pick(map, def) { return (map && (map[lang] || map[def])) || ""; }
     function bookLocale(b) { return b.locales.indexOf(lang) >= 0 ? lang : b.default; }
-    function bookLink(b) { return b.id + "/" + bookLocale(b) + "/"; }
+    function bookLink(b) { return "/" + b.id + "/" + bookLocale(b) + "/"; }
 
     function snippetHTML(text, q) {
       var i = text.toLowerCase().indexOf(q);
@@ -162,7 +165,7 @@
       var r = null;
       try { r = JSON.parse(localStorage.getItem("book-resume") || "null"); } catch (e) {}
       if (!r || !r.book || !site.books.some(function (b) { return b.id === r.book; })) { el.innerHTML = ""; return; }
-      var url = r.book + "/" + r.lang + "/" + r.slug + ".html";
+      var url = "/" + r.book + "/" + r.lang + "/" + r.slug + ".html";
       el.innerHTML = '<a class="resume-card" href="' + url + '">' +
         '<span class="resume-label">' + (RESUME_LABEL[lang] || RESUME_LABEL.en) + "</span>" +
         '<span class="resume-title">' + esc(r.bookTitle) + " · " + esc(r.title) + "</span>" +
@@ -172,7 +175,7 @@
     function card(b) {
       var title = esc(pick(b.title, b.default));
       var cov = b.cover
-        ? '<span class="cover" style="background-image:url(\'' + b.id + "/" + b.cover + '\')"></span>'
+        ? '<span class="cover" style="background-image:url(\'/' + b.id + "/" + b.cover + '\')"></span>'
         : '<span class="cover placeholder"><span class="cover-initial">' + esc(pick(b.title, b.default).slice(0, 1)) + "</span></span>";
       var author = pick(b.author, b.default);
       var desc = pick(b.description, b.default);
@@ -213,7 +216,7 @@
 
     function loadIndex(cb) {
       if (indexCache) return cb(indexCache);
-      fetch("search-index.json").then(function (r) { return r.json(); })
+      fetch("/search-index.json").then(function (r) { return r.json(); })
         .then(function (j) { indexCache = j; cb(j); }).catch(function () { cb(null); });
     }
 
@@ -237,7 +240,7 @@
             if (inTitle || inBody) {
               hits.push({
                 title: pt,
-                url: b.id + "/" + bookLocale(meta) + "/" + p.slug + ".html",
+                url: "/" + b.id + "/" + bookLocale(meta) + "/" + p.slug + ".html",
                 snippet: inBody ? snippetHTML(bd, q) : "<mark>" + esc(pt) + "</mark>",
               });
             }

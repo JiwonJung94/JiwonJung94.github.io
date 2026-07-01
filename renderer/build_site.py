@@ -118,7 +118,7 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
         return m.get(site_default) or m.get(b['default']) or ''
     for b in site_books:
         loc = site_default if site_default in b['locales'] else b['default']
-        cards.append({'id': b['id'], 'href': f"{b['id']}/{loc}/{b['first']}", 'title': _res(b['title'], b) or b['id'], 'author': _res(b['author'], b), 'description': _res(b['description'], b), 'cover': f"{b['id']}/{b['cover']}" if b['cover'] else None, 'locales': b['locales'], 'copyright': _res(b['copyright'], b), 'contact': b['contact']})
+        cards.append({'id': b['id'], 'href': f"/{b['id']}/{loc}/{b['first']}", 'title': _res(b['title'], b) or b['id'], 'author': _res(b['author'], b), 'description': _res(b['description'], b), 'cover': f"/{b['id']}/{b['cover']}" if b['cover'] else None, 'locales': b['locales'], 'copyright': _res(b['copyright'], b), 'contact': b['contact']})
     home_jsonld = None
     if site_url:
         _items = []
@@ -130,13 +130,16 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
                 _bk['author'] = {'@type': 'Person', 'name': _au}
             _items.append({'@type': 'ListItem', 'position': _i, 'item': _bk})
         _org = {'@type': 'Organization', 'name': title_map.get(site_default, 'Library'), 'url': f'{site_url}/', 'logo': {'@type': 'ImageObject', 'url': f'{site_url}/icon-512.png'}}
-        _graph = [_org, {'@type': 'WebSite', 'name': title_map.get(site_default, 'Library'), 'url': f'{site_url}/', 'inLanguage': site_langs, 'publisher': {'@type': 'Organization', 'name': title_map.get(site_default, 'Library')}}, {'@type': 'CollectionPage', 'name': title_map.get(site_default, 'Library'), 'url': f'{site_url}/', 'mainEntity': {'@type': 'ItemList', 'itemListElement': _items}}]
+        _graph = [_org, {'@type': 'WebSite', 'name': title_map.get(site_default, 'Library'), 'url': f'{site_url}/', 'inLanguage': site_langs, 'publisher': {'@type': 'Organization', 'name': title_map.get(site_default, 'Library')}}, {'@type': 'CollectionPage', 'name': title_map.get(site_default, 'Library'), 'url': f'{site_url}/home/', 'mainEntity': {'@type': 'ItemList', 'itemListElement': _items}}]
         home_jsonld = json.dumps({'@context': 'https://schema.org', '@graph': _graph}, ensure_ascii=False).replace('<', '\\u003c')
     site_json = {'books': site_books, 'langs': site_langs, 'langNames': {lc: LANG_NAMES.get(lc, lc.upper()) for lc in site_langs}, 'defaultLang': site_default, 'title': title_map, 'subtitle': subtitle_map, 'viewsUrl': views_url}
     (out / 'search-index.json').write_text(json.dumps({'books': index_books}, ensure_ascii=False), encoding='utf-8')
     env = Environment(loader=FileSystemLoader(TEMPLATES_DIR), autoescape=select_autoescape(['html']))
-    index_html = env.get_template('index.html').render(site_title=title_map.get(site_default, ''), site_subtitle=subtitle_map.get(site_default, ''), footer=footer or f'{len(cards)}권', default_locale=site_default, css=css, js=js, books=cards, views_url=views_url, jsonld=home_jsonld, verification=verification, analytics_cf=analytics_cf, meta_description=subtitle_map.get(site_default, ''), canonical=f'{site_url}/' if site_url else None, og={'title': title_map.get(site_default, ''), 'description': subtitle_map.get(site_default, ''), 'url': f'{site_url}/' if site_url else None}, site_json=json.dumps(site_json, ensure_ascii=False))
-    (out / 'index.html').write_text(index_html, encoding='utf-8')
+    hero_html = env.get_template('hero.html').render(canonical=f'{site_url}/' if site_url else None, verification=verification, analytics_cf=analytics_cf, hero_langs=site_langs, hero_default=site_default, hero_titles=title_map)
+    (out / 'index.html').write_text(hero_html, encoding='utf-8')
+    home_html = env.get_template('index.html').render(site_title=title_map.get(site_default, ''), site_subtitle=subtitle_map.get(site_default, ''), footer=footer or f'{len(cards)}권', default_locale=site_default, css=css, js=js, books=cards, views_url=views_url, jsonld=home_jsonld, verification=verification, analytics_cf=analytics_cf, meta_description=subtitle_map.get(site_default, ''), canonical=f'{site_url}/home/' if site_url else None, og={'title': title_map.get(site_default, ''), 'description': subtitle_map.get(site_default, ''), 'url': f'{site_url}/home/' if site_url else None}, site_json=json.dumps(site_json, ensure_ascii=False))
+    (out / 'home').mkdir(parents=True, exist_ok=True)
+    (out / 'home' / 'index.html').write_text(home_html, encoding='utf-8')
     nf_books = [{'id': b['id'], 'default': b['default'], 'locales': b['locales'], 'slugs': [p['slug'] for p in b['pages']]} for b in index_books]
     nf_html = env.get_template('404.html').render(data=json.dumps({'books': nf_books}, ensure_ascii=False))
     (out / '404.html').write_text(nf_html, encoding='utf-8')
@@ -146,7 +149,7 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
 
         def _xml(s):
             return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-        rows = [f'  <url><loc>{site_url}/</loc></url>']
+        rows = [f'  <url><loc>{site_url}/</loc></url>', '  <url><loc>%s</loc></url>' % _xml(f'{site_url}/home/')]
         for b in index_books:
             bid = b['id']
             blocs = b['locales']
@@ -169,7 +172,7 @@ def build(inputs: list[str], out_dir: str, site_title: str, site_subtitle: str='
         for f in assets_dir.iterdir():
             if f.is_file():
                 shutil.copy2(f, out / f.name)
-    manifest = {'name': title_map.get(site_default, 'Library'), 'short_name': title_map.get(site_default, 'Library'), 'start_url': '/', 'display': 'standalone', 'background_color': '#fbfaf7', 'theme_color': '#8a5a2b', 'icons': [{'src': '/icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': '/icon-512.png', 'sizes': '512x512', 'type': 'image/png'}, {'src': '/icon-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}]}
+    manifest = {'name': title_map.get(site_default, 'Library'), 'short_name': title_map.get(site_default, 'Library'), 'start_url': '/', 'display': 'standalone', 'background_color': '#efede7', 'theme_color': '#283c63', 'icons': [{'src': '/icon-192.png', 'sizes': '192x192', 'type': 'image/png'}, {'src': '/icon-512.png', 'sizes': '512x512', 'type': 'image/png'}, {'src': '/icon-512.png', 'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'}]}
     (out / 'site.webmanifest').write_text(json.dumps(manifest, ensure_ascii=False), encoding='utf-8')
     (out / '.nojekyll').write_text('', encoding='utf-8')
     print(f'\n사이트 빌드 완료: {out}/  (책 {len(cards)}권)')

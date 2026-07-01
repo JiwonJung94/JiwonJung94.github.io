@@ -14,7 +14,7 @@
         if (books[j].id === parts[i]) { bi = i; book = books[j]; break; }
       }
     }
-    function go(u) { location.replace(u === location.pathname ? "/" : u); }
+    function go(u) { location.replace(u === location.pathname ? "/home/" : u); }
     if (book) {
       var base = "/" + parts.slice(0, bi).join("/");
       base = base === "/" ? "/" : base + "/";
@@ -29,10 +29,10 @@
         go(base + book.id + "/");
       }
     } else {
-      go("/");  // 어느 책에도 안 걸림 → 서가 홈
+      go("/home/");
     }
   })();
   </script>
 </head>
-<body>리다이렉트 중… <a href="/">홈으로</a></body>
+<body>리다이렉트 중… <a href="/home/">홈으로</a></body>
 </html>

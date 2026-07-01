@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko" class="no-js" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1A1B1F">
+<meta name="color-scheme" content="dark light">
+<script>(function(){try{var t=localStorage.getItem("theme")||"dark";localStorage.setItem("theme",t);document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+{% if verification.google %}<meta name="google-site-verification" content="{{ verification.google }}">{% endif %}
+{% if verification.naver %}<meta name="naver-site-verification" content="{{ verification.naver }}">{% endif %}
+{% if verification.bing %}<meta name="msvalidate.01" content="{{ verification.bing }}">{% endif %}
+<title>About — Jiwon Jung</title>
+{% if canonical %}<link rel="canonical" href="{{ canonical }}">{% endif %}
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="About — Jiwon Jung">
+<meta property="og:description" content="우리가 같은 곳을 바라본 밤, 흩어진 별빛이 각자의 문장이 되었다.">
+{% if canonical %}<meta property="og:url" content="{{ canonical }}">{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+
+<script>
+  document.documentElement.classList.replace('no-js','js');
+</script>
+
+<style>
+  :root{
+    --bg:#EEEDE7; --text:#20201D; --muted:#5C574F; --line:#CAC7BD; --accent:#283C63;
+  }
+  [data-theme="dark"]{
+    --bg:#1A1B1F; --text:#E9E6DD; --muted:#9A958B; --line:rgba(233,230,221,0.16); --accent:#9DB6E6;
+  }
+  *{box-sizing:border-box;}
+  html{background:var(--bg);transition:background .6s ease;overscroll-behavior-y:none;}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:"Gowun Batang",serif;letter-spacing:-0.01em;
+    -webkit-font-smoothing:antialiased;transition:background .6s ease,color .6s ease;
+    overflow-x:hidden;
+  }
+  .atmosphere{position:fixed;inset:0;z-index:0;pointer-events:none;transition:background .6s ease;}
+  [data-theme="dark"] .atmosphere{
+    background:
+      radial-gradient(55% 40% at 78% 14%, rgba(70,92,165,0.20), transparent 72%),
+      radial-gradient(50% 42% at 16% 78%, rgba(45,60,120,0.16), transparent 72%),
+      radial-gradient(140% 100% at 50% -10%, rgba(20,26,46,0), rgba(5,6,11,0.7) 100%);
+  }
+  [data-theme="light"] .atmosphere{
+    background:radial-gradient(80% 60% at 50% 50%, rgba(238,237,231,0), rgba(228,226,218,0.5) 100%);
+  }
+  #sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:5;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:clamp(16px,3vh,26px) clamp(20px,5vw,46px);
+    font-family:"Gowun Batang",serif;font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;
+  }
+  .topbar .who{color:var(--muted);} .topbar .who b{color:var(--text);font-weight:700;}
+  .toggle{background:none;border:1px solid var(--line);color:var(--muted);font-family:inherit;font-size:0.64rem;letter-spacing:0.12em;padding:5px 11px;border-radius:999px;cursor:pointer;transition:color .2s,border-color .2s;}
+  .toggle:hover{color:var(--text);border-color:var(--accent);}
+  .topbar .ctl{display:flex;align-items:center;gap:10px;}
+  .lang{background:none;border:1px solid var(--line);color:var(--muted);font-family:"Gowun Batang",serif;font-size:0.64rem;letter-spacing:0.1em;padding:5px 9px;border-radius:999px;cursor:pointer;-webkit-appearance:none;appearance:none;text-align:center;transition:color .2s,border-color .2s;}
+  .lang:hover{color:var(--text);border-color:var(--accent);}
+  .lang option{color:#20201D;}
+  .enter{color:var(--accent);text-decoration:none;border:1px solid var(--accent);font-size:0.68rem;letter-spacing:0.03em;padding:5px 12px;border-radius:999px;white-space:nowrap;transition:opacity .2s;}
+  .enter:hover{opacity:0.6;}
+
+  .scene{
+    position:relative;z-index:1;
+    min-height:100vh;min-height:100dvh;
+    display:flex;align-items:center;justify-content:center;
+    padding:14vh clamp(24px,7vw,40px);
+    text-align:center;
+  }
+  .content{width:max-content;max-width:100%;margin-inline:auto;will-change:opacity,transform,filter;}
+  .content.wide{max-width:100%;}
+
+  .eyebrow{font-family:"Gowun Batang",serif;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:22px;transition:color .6s ease;}
+
+  .epigraph{font-family:"Gowun Batang",serif;font-weight:700;font-size:clamp(1.2rem,6.2vw,3rem);line-height:1.45;letter-spacing:-0.02em;margin:0;white-space:normal;word-break:keep-all;text-wrap:balance;}
+  .epigraph .a{display:block;}
+  .epigraph .b{display:block;color:var(--accent);margin-top:0.18em;transition:color .6s ease;}
+
+  .stmt{font-family:"Gowun Batang",serif;font-weight:700;font-size:clamp(1.1rem,5.6vw,2.15rem);line-height:1.5;letter-spacing:-0.02em;margin:0;white-space:normal;word-break:keep-all;text-wrap:balance;}
+  .sub{margin-top:20px;color:var(--muted);font-size:clamp(0.95rem,1.6vw,1.08rem);line-height:1.7;}
+  .who-name{font-family:"Gowun Batang",serif;font-weight:700;font-size:clamp(1.5rem,3.4vw,2.2rem);margin:0;}
+
+  .more{display:inline-block;margin-top:30px;font-family:"Gowun Batang",serif;font-size:0.78rem;letter-spacing:0.06em;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:3px;transition:opacity .2s,color .6s ease;}
+  .more:hover{opacity:0.55;}
+  .links{margin-top:26px;display:flex;flex-direction:column;gap:12px;font-family:"Gowun Batang",serif;font-size:0.78rem;letter-spacing:0.06em;}
+  .links.tail{margin-top:clamp(34px,7vh,60px);}
+  .links .go{font-size:0.95rem;color:var(--accent);align-self:center;display:inline-block;border-bottom:1px solid var(--accent);padding-bottom:3px;}
+  .links a{color:var(--text);text-decoration:none;transition:color .2s;}
+  .links a:hover{color:var(--accent);}
+
+  .scrollcue{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:4;font-family:"Gowun Batang",serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px;transition:opacity .5s ease;}
+  .scrollcue .bar{width:1px;height:30px;background:linear-gradient(var(--accent),transparent);}
+
+  a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+</style>
+</head>
+<body>
+<div class="atmosphere"></div>
+<canvas id="sky"></canvas>
+
+<header class="topbar">
+  <span class="who">정지원 <b>Jiwon Jung</b></span>
+  <span class="ctl">
+    <button class="toggle" id="themeBtn" aria-label="라이트/다크 전환">DARK</button>
+    <select class="lang" id="heroLang" aria-label="language">{% for l in hero_langs %}<option value="{{ l }}">{{ l|upper }}</option>{% endfor %}</select>
+    <a class="enter" id="heroEnter" href="/home/">라이브러리 →</a>
+  </span>
+</header>
+
+<main>
+  <section class="scene">
+    <div class="content wide">
+      <h1 class="epigraph">
+        <span class="a" id="s1a">우리가 같은 곳을 바라본 밤,</span>
+        <span class="b" id="s1b">흩어진 별빛이<br>각자의 문장이 되었다.</span>
+      </h1>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div class="content">
+      <p class="stmt" id="s2">같은 별을 두고도<br>나는 사자를,<br>당신은 사냥꾼을 보았다.</p>
+    </div>
+  </section>
+
+  <section class="scene">
+    <div class="content">
+      <p class="stmt" id="s3">오늘 찾은 저 왕관을 두고,<br>당신은 무엇을 그릴까.<br>그것이 너무나도 궁금하여,<br>이 글을 남긴다.</p>
+      <div class="links tail">
+        <a class="go" href="/home/">책 보러 가기 →</a>
+        <a href="mailto:jiwon8297@gmail.com">jiwon8297@gmail.com</a>
+        <a href="https://github.com/jiwonjung94">github.com/jiwonjung94</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="scrollcue" id="cue"><span>Scroll</span><span class="bar"></span></div>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  if(!btn) return;
+  function cur(){ return root.getAttribute('data-theme')||'light'; }
+  function sync(){ btn.textContent = (cur()==='dark') ? 'LIGHT' : 'DARK'; }
+  sync();
+  btn.addEventListener('click', function(){
+    root.setAttribute('data-theme', cur()==='dark' ? 'light' : 'dark');
+    try{ localStorage.setItem('theme', root.getAttribute('data-theme')); }catch(e){}
+    sync();
+  });
+  window.addEventListener('pageshow', function(){
+    try{ root.setAttribute('data-theme', localStorage.getItem('theme')||'dark'); }catch(e){}
+    sync();
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var LANGS = {{ hero_langs|tojson }}, DEF = "{{ hero_default }}";
+  var HERO = {
+    ko:{
+      s1a:"우리가 같은 곳을 바라본 밤,",
+      s1b:"흩어진 별빛이<br>각자의 문장이 되었다.",
+      s2:"같은 별을 두고도<br>나는 사자를,<br>당신은 사냥꾼을 보았다.",
+      s3:"오늘 찾은 저 왕관을 두고,<br>당신은 무엇을 그릴까.<br>그것이 너무나도 궁금하여,<br>이 글을 남긴다.",
+      go:"책 보러 가기 →"
+    },
+    en:{
+      s1a:"On the night we looked to the same sky,",
+      s1b:"the scattered starlight<br>became each of our sentences.",
+      s2:"From the very same stars,<br>I saw a lion,<br>and you, a hunter.",
+      s3:"The crown we found tonight —<br>what will you make of it?<br>So deeply did I wonder<br>that I left these words.",
+      go:"See the books →"
+    },
+    vi:{
+      s1a:"Đêm chúng ta cùng nhìn về một phía,",
+      s1b:"ánh sao tản mác<br>đã thành câu chữ của riêng mỗi người.",
+      s2:"Cùng một vì sao,<br>tôi thấy một con sư tử,<br>còn bạn, một người thợ săn.",
+      s3:"Trước vương miện ta tìm thấy đêm nay,<br>bạn sẽ vẽ nên điều gì?<br>Tò mò xiết bao,<br>nên tôi để lại những dòng này.",
+      go:"Xem sách →"
+    }
+  };
+  var TITLES = {{ hero_titles|tojson }};
+  function byId(id){ return document.getElementById(id); }
+  function detect(){
+    try{ var s=localStorage.getItem("book-lang"); if(s && LANGS.indexOf(s)>=0) return s; }catch(e){}
+    try{ var c=navigator.languages||[navigator.language||""]; for(var i=0;i<c.length;i++){ var b=(c[i]||"").toLowerCase().split("-")[0]; if(LANGS.indexOf(b)>=0) return b; } }catch(e){}
+    return LANGS.indexOf(DEF)>=0 ? DEF : LANGS[0];
+  }
+  function apply(l){
+    var d = HERO[l] || HERO[DEF] || HERO.ko;
+    var set=function(id,html){ var e=byId(id); if(e) e.innerHTML=html; };
+    set('s1a',d.s1a); set('s1b',d.s1b); set('s2',d.s2); set('s3',d.s3);
+    var go=document.querySelector('a.go'); if(go) go.innerHTML=d.go;
+    var en=byId('heroEnter'); if(en) en.textContent=(TITLES[l]||TITLES[DEF]||'')+' →';
+    document.documentElement.setAttribute('lang', l);
+    var sel=byId('heroLang'); if(sel) sel.value=l;
+  }
+  var lang = detect();
+  apply(lang);
+  var sel=byId('heroLang');
+  if(sel) sel.addEventListener('change', function(){
+    lang = sel.value;
+    try{ localStorage.setItem('book-lang', lang); }catch(e){}
+    apply(lang);
+  });
+  window.addEventListener('pageshow', function(){ lang = detect(); apply(lang); });
+})();
+</script>
+
+<script>
+(function(){
+  try{
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var cue = document.getElementById('cue');
+    var scenes = [].slice.call(document.querySelectorAll('.scene')).map(function(s){ return {el:s, c:s.querySelector('.content')}; });
+    function tick(){
+      var sc = window.scrollY||window.pageYOffset;
+      var vh = window.innerHeight, mid = vh/2;
+      for(var i=0;i<scenes.length;i++){
+        var r = scenes[i].el.getBoundingClientRect();
+        var d = (r.top + r.height/2 - mid)/vh;
+        if(reduce){ scenes[i].c.style.opacity=1; scenes[i].c.style.transform='none'; scenes[i].c.style.filter='none'; continue; }
+        var ad = Math.min(1, Math.abs(d)/0.55), vis = 1-ad, blur = ad*7;
+        scenes[i].c.style.opacity = vis.toFixed(3);
+        scenes[i].c.style.transform = 'scale('+(0.975+vis*0.025).toFixed(3)+')';
+        scenes[i].c.style.filter = blur>0.25 ? ('blur('+blur.toFixed(1)+'px)') : 'none';
+      }
+      if(cue) cue.style.opacity = sc>40 ? 0 : 0.85;
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }catch(e){}
+})();
+</script>
+
+<script>
+(function(){
+  try{
+    var root=document.documentElement;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var palettes={
+      light:{ star:'40,60,99', line:'40,60,99', lineA:0.30 },
+      dark :{ star:'235,232,222', line:'157,182,230', lineA:0.55 }
+    };
+    function curName(){ return root.getAttribute('data-theme')||'light'; }
+    function P(){ return palettes[curName()]; }
+    var spriteCache={}, lastTheme=curName();
+    function sprite(rgb){
+      if(spriteCache[rgb]) return spriteCache[rgb];
+      var s=30,c=document.createElement('canvas');c.width=c.height=s;
+      var g=c.getContext('2d'),gr=g.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);
+      gr.addColorStop(0,'rgba('+rgb+',1)');gr.addColorStop(0.25,'rgba('+rgb+',0.5)');gr.addColorStop(1,'rgba('+rgb+',0)');
+      g.fillStyle=gr;g.fillRect(0,0,s,s);spriteCache[rgb]=c;return c;
+    }
+    function rnd(a,b){ return a+Math.random()*(b-a); }
+
+    var canvas=document.getElementById('sky'); if(!canvas) return;
+    var ctx=canvas.getContext('2d'); if(!ctx) return;
+    var W=0,H=0,DPR=Math.min(window.devicePixelRatio||1,2);
+    var stars=[], con=null, ptx=0,pty=0,tx=0,ty=0, RANGE=16;
+
+    function build(){
+      var area=W*H; stars=[];
+      var n1=Math.min(150,Math.round(area/12000));
+      for(var i=0;i<n1;i++) stars.push({x:Math.random()*W,y:Math.random()*H,r:rnd(.3,1.0),a:rnd(.18,.6),tw:rnd(.3,1.1),ph:rnd(0,6.28),scr:rnd(.01,.04),tilt:rnd(.2,.5),glow:false});
+      var n2=Math.min(22,Math.round(area/95000));
+      for(var j=0;j<n2;j++) stars.push({x:Math.random()*W,y:Math.random()*H,r:rnd(1.3,2.3),a:rnd(.5,1),tw:rnd(.4,.9),ph:rnd(0,6.28),scr:rnd(.05,.09),tilt:rnd(.6,1),glow:true});
+      var cx=W*0.5, cy=H*0.5, span=Math.min(W*0.56,440);
+      var pts=[[-.5,.18],[-.3,-.16],[-.08,.10],[.14,-.12],[.36,.14],[.55,-.04]], nodes=[];
+      for(var k=0;k<pts.length;k++) nodes.push({ x:cx+span*pts[k][0], y:cy+span*0.16*pts[k][1], ph:rnd(0,6.28), tw:rnd(.5,1) });
+      con={nodes:nodes};
+    }
+    function resize(){
+      W=window.innerWidth;H=window.innerHeight;
+      canvas.width=W*DPR;canvas.height=H*DPR;canvas.style.width=W+'px';canvas.style.height=H+'px';
+      ctx.setTransform(DPR,0,0,DPR,0,0); build();
+    }
+
+    var t0=Date.now();
+    function frame(){
+      if(curName()!==lastTheme){ spriteCache={}; lastTheme=curName(); }
+      var t=(Date.now()-t0)/1000, pal=P(), sc=window.scrollY||window.pageYOffset;
+      ptx+=(tx-ptx)*0.05; pty+=(ty-pty)*0.05;
+      ctx.clearRect(0,0,W,H);
+
+      for(var i=0;i<stars.length;i++){
+        var s=stars[i];
+        var ox=ptx*RANGE*s.tilt, oy=pty*RANGE*s.tilt;
+        var y=(((s.y+sc*s.scr)%H)+H)%H + oy, x=s.x+ox;
+        var tw=reduce?1:(0.5+0.5*Math.sin(t*s.tw+s.ph));
+        var alpha=s.a*tw;
+        if(alpha<=0.015) continue;
+        if(s.glow){ var sz=s.r*7; ctx.globalAlpha=Math.min(1,alpha); ctx.drawImage(sprite(pal.star),x-sz/2,y-sz/2,sz,sz); ctx.globalAlpha=1; }
+        else { ctx.beginPath(); ctx.arc(x,y,s.r,0,6.2832); ctx.fillStyle='rgba('+pal.star+','+alpha.toFixed(3)+')'; ctx.fill(); }
+      }
+
+      if(con){
+        var draw = reduce?1:Math.max(0,Math.min(1, sc/(H*0.5)));
+        var fade = Math.max(0,Math.min(1, 1-(sc-H*0.72)/(H*0.5)));
+        if(fade>0.01){
+          var ox2=ptx*RANGE*0.7, oy2=pty*RANGE*0.7;
+          var N=con.nodes, E=N.length-1, drawn=draw*E;
+          ctx.lineWidth=1; ctx.lineCap='round';
+          ctx.strokeStyle='rgba('+pal.line+','+(pal.lineA*fade).toFixed(3)+')';
+          var lead=null;
+          for(var e=0;e<E;e++){
+            var f=Math.max(0,Math.min(1,drawn-e)); if(f<=0) break;
+            var A=N[e],B=N[e+1];
+            var ax=A.x+ox2,ay=A.y+oy2,bx=B.x+ox2,by=B.y+oy2;
+            var ex=ax+(bx-ax)*f, ey=ay+(by-ay)*f;
+            ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ex,ey);ctx.stroke();
+            if(f<1) lead={x:ex,y:ey};
+          }
+          var spr=sprite(pal.star);
+          for(var m=0;m<N.length;m++){
+            var lit = m<=drawn+0.05 ? 1 : 0.32;
+            var tw2=reduce?1:(0.55+0.45*Math.sin(t*N[m].tw+N[m].ph));
+            var sz2=m<=drawn+0.05?11:7;
+            ctx.globalAlpha=Math.min(1,fade*lit*tw2); ctx.drawImage(spr,N[m].x+ox2-sz2/2,N[m].y+oy2-sz2/2,sz2,sz2); ctx.globalAlpha=1;
+          }
+          if(lead && !reduce){ var ps=14; ctx.globalAlpha=fade*0.85; ctx.drawImage(spr,lead.x-ps/2,lead.y-ps/2,ps,ps); ctx.globalAlpha=1; }
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+
+    window.addEventListener('resize',resize);
+    window.addEventListener('pointermove',function(e){ tx=(e.clientX/W-0.5)*2; ty=(e.clientY/H-0.5)*2; },{passive:true});
+    window.addEventListener('deviceorientation',function(e){ if(e.gamma!=null){ tx=Math.max(-1,Math.min(1,e.gamma/28)); ty=Math.max(-1,Math.min(1,(e.beta-45)/28)); } });
+
+    resize(); requestAnimationFrame(frame);
+  }catch(e){}
+})();
+</script>
+{% if analytics_cf %}<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ analytics_cf }}"}'></script>{% endif %}
+</body>
+</html>

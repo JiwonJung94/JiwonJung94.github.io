@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>(function(){try{var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
-  <meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#1f1f21" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#efede7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1a1b1f" media="(prefers-color-scheme: dark)">
   {% if verification.google %}<meta name="google-site-verification" content="{{ verification.google }}">{% endif %}
   {% if verification.naver %}<meta name="naver-site-verification" content="{{ verification.naver }}">{% endif %}
   {% if verification.bing %}<meta name="msvalidate.01" content="{{ verification.bing }}">{% endif %}
