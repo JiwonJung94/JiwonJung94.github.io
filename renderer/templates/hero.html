@@ -13,11 +13,11 @@
 {% if verification.google %}<meta name="google-site-verification" content="{{ verification.google }}">{% endif %}
 {% if verification.naver %}<meta name="naver-site-verification" content="{{ verification.naver }}">{% endif %}
 {% if verification.bing %}<meta name="msvalidate.01" content="{{ verification.bing }}">{% endif %}
-<title>About — Jiwon Jung</title>
+<title>Jiwon Jung</title>
 {% if canonical %}<link rel="canonical" href="{{ canonical }}">{% endif %}
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="About — Jiwon Jung">
+<meta property="og:title" content="Jiwon Jung">
 <meta property="og:description" content="우리가 같은 곳을 바라본 밤, 흩어진 별빛이 각자의 문장이 되었다.">
 {% if canonical %}<meta property="og:url" content="{{ canonical }}">{% endif %}
 <meta name="twitter:card" content="summary_large_image">
@@ -341,8 +341,6 @@
     }
 
     window.addEventListener('resize',resize);
-    window.addEventListener('pointermove',function(e){ tx=(e.clientX/W-0.5)*2; ty=(e.clientY/H-0.5)*2; },{passive:true});
-    window.addEventListener('deviceorientation',function(e){ if(e.gamma!=null){ tx=Math.max(-1,Math.min(1,e.gamma/28)); ty=Math.max(-1,Math.min(1,(e.beta-45)/28)); } });
 
     resize(); requestAnimationFrame(frame);
   }catch(e){}
